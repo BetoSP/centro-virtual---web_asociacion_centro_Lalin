@@ -1,26 +1,91 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --ink: #1c2321;
+  --atlantic: #0e2a38;
+  --atlantic-2: #153447;
+  --green: #3f6b4a;
+  --green-dark: #2e5138;
+  --gold: #c9a227;
+  --black: #141414;
+  --granite: #6e6a5e;
+  --granite-light: #b9b3a4;
+  --paper: #f6f4ee;
+  --paper-2: #eae4d4;
+  --line: #dcd6c6;
+  --white: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #0b1a20;
+    --paper-2: #13272f;
+    --ink: #f3efe3;
+    --granite: #c7c4b8;
+    --granite-light: #9ca39d;
+    --line: rgba(255, 255, 255, 0.08);
+    --gold: #e0bb4e;
   }
 }
 
+@layer base {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-work-sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-fraunces);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</helmet>
+
+<div style="background:#EDEAE1; min-height:100vh; padding:48px 24px 96px; font-family:'Work Sans',sans-serif; color:#1C2321;">
+
+  <!-- ============ REVIEW HEADER / CRITIQUE ============ -->
+  <div style="max-width:920px; margin:0 auto 40px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Revisión de diseño · Sede virtual</div>
+    <h1 style="font-family:'Fraunces',serif; font-weight:600; font-size:34px; color:#0E2A38; margin:0 0 18px; letter-spacing:-0.01em;">Centro Lalín, Agolada y Silleda</h1>
+    <p style="font-size:16px; line-height:1.7; color:#4A473E; max-width:680px; margin:0 0 20px;">Repasé el sitio que armó Claude Code. La base institucional está bien resuelta (historia real, rutas separadas, formulario de socios completo). Lo que propongo abajo ataca puntualmente lo que mencionaste: paleta, vidrio/glass, modo noche, cuántas páginas, botones muy juntos y cómo se ve en tablet/móvil.</p>
+
+    <div style="background:#FFFFFF; border:1px solid #E4DECD; border-radius:14px; padding:28px 32px; display:flex; flex-direction:column; gap:16px;">
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">01</div>
+        <div><strong style="color:#0E2A38;">Paleta:</strong> <span style="color:#4A473E;">el rumbo atlántico/oro/papel es correcto para la identidad, pero hoy se ve plana por falta de contraste tonal. Profundicé el azul, subí la luminosidad del oro y sumé terracota (ya está en tu README, no se usaba) como acento cálido puntual — no un color nuevo, uno que ya tenían pero no aplicaron.</span></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">02</div>
+        <div><strong style="color:#0E2A38;">Glass:</strong> <span style="color:#4A473E;">tiene sentido, pero con criterio — lo dejé en el header sticky y en la barra de accesos del hero (ya usaban blur ahí). No lo llevé a toda la página: sobre fondo papel el glass pierde legibilidad y se ve genérico.</span></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">03</div>
+        <div><strong style="color:#0E2A38;">Modo noche:</strong> <span style="color:#4A473E;">armé una propuesta abajo. No es "invertir colores": fondo casi negro atlántico, oro más luminoso para que siga leyéndose como marca, papel como texto.</span></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">04</div>
+        <div><strong style="color:#0E2A38;">¿Landing larga o varias páginas?:</strong> <span style="color:#4A473E;">ya tienen rutas propias (/historia, /actividades, /novedades, /galería, /asociate, /contacto) — no hace falta meter todo en la home. Achiqué la home a "probaditas" de cada sección con link de salida. Se lee más rápido y cada página profundiza lo suyo.</span></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">05</div>
+        <div><strong style="color:#0E2A38;">Botones muy juntos:</strong> <span style="color:#4A473E;">hoy conviven "Asociate" del header + 3 accesos rápidos + CTA dorado, todos pegados bajo el hero. Dejé un solo CTA dorado por sección, el resto en outline/ghost, con más aire entre grupos.</span></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">06</div>
+        <div><strong style="color:#0E2A38;">Tablet/móvil:</strong> <span style="color:#4A473E;">hoy el menú solo colapsa en móvil — en tablet el nav completo queda apretado. Lo hice colapsar antes. Probalo con el selector de abajo.</span></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">+</div>
+        <div><strong style="color:#0E2A38;">Fotos reales:</strong> <span style="color:#4A473E;">las fotos de eventos (coro, fiesta del cocido, taller) son el activo más fuerte del sitio — transmiten comunidad real, no stock. Les apliqué recorte y overlay consistentes para que se vean cuidadas y no como capturas de celular sueltas.</span></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; color:#C9A227; font-size:14px; width:22px; flex-shrink:0;">+</div>
+        <div><strong style="color:#0E2A38;">La tierra, no solo la historia:</strong> <span style="color:#4A473E;">Deza es rural — ríos, praderas, verde intenso. Es un gancho emocional más fuerte para un descendiente joven que una fecha de fundación. Sumé un verde (ya estaba en tu paleta original, sin usar) como acento de paisaje, y una leyenda sobre la foto del hero para nombrar el lugar real.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CONTROLS ============ -->
+  <div style="max-width:920px; margin:0 auto 28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#6E6A5E;">Ver como:</span>
+    <div style="display:flex; background:#fff; border:1px solid #E4DECD; border-radius:10px; padding:4px; gap:4px;">
+      <button onClick="{{ goDesktop }}" style="{{ desktopBtnStyle }}">Escritorio</button>
+      <button onClick="{{ goTablet }}" style="{{ tabletBtnStyle }}">Tablet</button>
+      <button onClick="{{ goMobile }}" style="{{ mobileBtnStyle }}">Móvil</button>
+    </div>
+  </div>
+
+  <!-- ============ HOME MOCKUP (LIGHT) ============ -->
+  <div data-screen-label="Home — propuesta" style="max-width:100%; display:flex; flex-direction:column; align-items:center; margin-bottom:16px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#6E6A5E; margin-bottom:12px;">Home — propuesta ({{ viewportLabel }})</div>
+    <div style="width:{{ frameWidth }}px; max-width:100%; background:#FAF7F0; border-radius:16px; overflow:hidden; box-shadow:0 30px 70px rgba(14,42,56,0.18); border:1px solid #E4DECD;">
+
+      <!-- Announcement -->
+      <div style="background:#081720; color:#C9A227; text-align:center; font-size:12px; padding:9px 16px; font-weight:500;">La comunidad dezana en Argentina · Asociate hoy</div>
+
+      <!-- Header -->
+      <div style="position:relative; background:rgba(250,247,240,0.85); backdrop-filter:blur(10px); border-bottom:1px solid #E4DECD;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <img src="assets/logo.jpg" alt="Centro Lalín, Agolada y Silleda" style="width:42px; height:42px; border-radius:50%; object-fit:cover; flex-shrink:0;" />
+            <div>
+              <div style="font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:#1C2321; line-height:1.2;">Centro Lalín, Agolada y Silleda</div>
+            </div>
+          </div>
+
+          <sc-if value="{{ isDesktop }}">
+            <nav style="display:flex; align-items:center; gap:22px;">
+              <a style="font-size:13px; font-weight:500; color:#1C2321; text-decoration:none;">Historia</a>
+              <a style="font-size:13px; font-weight:500; color:#1C2321; text-decoration:none;">Actividades</a>
+              <a style="font-size:13px; font-weight:500; color:#1C2321; text-decoration:none;">Novedades</a>
+              <a style="font-size:13px; font-weight:500; color:#1C2321; text-decoration:none;">Galería</a>
+              <a style="font-size:13px; font-weight:500; color:#1C2321; text-decoration:none;">Contacto</a>
+              <a style="font-size:13px; font-weight:500; color:#6E6A5E; text-decoration:none;">Ingresar</a>
+            </nav>
+          </sc-if>
+
+          <sc-if value="{{ isCompactNav }}">
+            <button onClick="{{ toggleNav }}" style="background:transparent; border:1px solid #DCD6C6; border-radius:8px; width:38px; height:38px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; cursor:pointer;">
+              <span style="width:16px; height:2px; background:#1C2321; display:block;"></span>
+              <span style="width:16px; height:2px; background:#1C2321; display:block;"></span>
+              <span style="width:16px; height:2px; background:#1C2321; display:block;"></span>
+            </button>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ navOpen }}">
+          <div style="border-top:1px solid #E4DECD; padding:16px 24px; display:flex; flex-direction:column; gap:14px; background:#FAF7F0;">
+            <a style="font-size:14px; color:#1C2321; text-decoration:none;">Historia</a>
+            <a style="font-size:14px; color:#1C2321; text-decoration:none;">Actividades</a>
+            <a style="font-size:14px; color:#1C2321; text-decoration:none;">Novedades</a>
+            <a style="font-size:14px; color:#1C2321; text-decoration:none;">Galería</a>
+            <a style="font-size:14px; color:#1C2321; text-decoration:none;">Contacto</a>
+            <a style="font-size:14px; color:#6E6A5E; text-decoration:none;">Ingresar</a>
+          </div>
+        </sc-if>
+      </div>
+
+      <!-- Hero -->
+      <div style="position:relative; padding:56px 24px 40px;">
+        <sc-for list="{{ heroSlides }}" as="slide" hint-placeholder-count="3">
+          <img src="{{ slide.img }}" alt="" style="{{ slide.style }}" />
+        </sc-for>
+        <div style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(8,23,32,0.93) 25%, rgba(8,23,32,0.5) 80%);"></div>
+        <div style="position:relative; max-width:560px;">
+          <h1 style="font-family:'Fraunces',serif; font-weight:600; font-size:38px; line-height:1.1; color:#fff; margin:0 0 16px;">Deza en Bos Aires.</h1>
+          <p style="font-size:15px; line-height:1.7; color:rgba(255,255,255,0.88); margin:0 0 24px;">El lugar de quienes llegaron a estas tierras desde su querida comarca — y de sus hijos y nietos que heredaron toda la morriña por la tierra do seus pais.</p>
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:8px; background:rgba(63,107,74,0.55); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:7px 14px 7px 10px;">
+              <div style="width:6px; height:6px; border-radius:50%; background:#7FBE8C; flex-shrink:0;"></div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#fff; white-space:nowrap;">{{ heroCaption }}</div>
+            </div>
+            <div style="display:flex; gap:5px;">
+              <sc-for list="{{ heroDots }}" as="dot" hint-placeholder-count="3">
+                <div onClick="{{ dot.onClick }}" style="{{ dot.style }}"></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass quicklink bar -->
+      <div style="padding:0 24px; margin-top:-28px; position:relative; z-index:2;">
+        <div style="background:rgba(8,23,32,0.62); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:14px 18px; display:flex; align-items:center; flex-wrap:wrap; gap:10px; box-shadow:0 16px 40px rgba(0,0,0,0.25);">
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <a style="font-size:12px; font-weight:600; color:#fff; background:rgba(255,255,255,0.1); border-radius:7px; padding:9px 14px; text-decoration:none;">Historia del Centro</a>
+            <a style="font-size:12px; font-weight:600; color:#fff; background:rgba(255,255,255,0.1); border-radius:7px; padding:9px 14px; text-decoration:none;">Próximas actividades</a>
+            <a style="font-size:12px; font-weight:600; color:#fff; background:rgba(255,255,255,0.1); border-radius:7px; padding:9px 14px; text-decoration:none;">Novedades</a>
+          </div>
+          <a style="margin-left:auto; font-size:12px; font-weight:700; color:#141414; background:#D9B23C; border-radius:7px; padding:10px 18px; text-decoration:none; white-space:nowrap;">Asociate al Centro →</a>
+        </div>
+      </div>
+
+      <!-- About teaser -->
+      <div style="padding:56px 24px 8px; max-width:800px; margin:0 auto;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Quiénes somos</div>
+        <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:26px; color:#0E2A38; margin:0 0 14px; max-width:520px;">Una institución centenaria que se pone al día.</h2>
+        <p style="font-size:14px; line-height:1.75; color:#4A473E; max-width:640px; margin:0 0 12px;">Centro fundado el 25 de julio de 1982, para agrupar en una sola institución a las distintas sociedades del partido judicial de Lalín constituidas en Buenos Aires.</p>
+        <p style="font-size:14px; line-height:1.75; color:#4A473E; max-width:640px; margin:0 0 28px;">Deza es una comarca rural: ríos, praderas y verde todo el año. Para quien nunca la pisó, es tan parte de la herencia como los apellidos.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:16px; margin-bottom:24px;">
+          <div style="background:#fff; border:1px solid #E4DECD; border-radius:12px; padding:20px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#C9A227; font-weight:600; margin-bottom:10px;">01</div>
+            <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#0E2A38; margin-bottom:6px;">Amistad y camaradería</div>
+            <div style="font-size:13px; color:#6E6A5E; line-height:1.6;">Vínculos entre asociados dentro y fuera del Centro.</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E4DECD; border-radius:12px; padding:20px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#C9A227; font-weight:600; margin-bottom:10px;">02</div>
+            <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#0E2A38; margin-bottom:6px;">Vínculos culturales</div>
+            <div style="font-size:13px; color:#6E6A5E; line-height:1.6;">Relación con entidades que promueven la cultura gallega.</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E4DECD; border-radius:12px; padding:20px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#C9A227; font-weight:600; margin-bottom:10px;">03</div>
+            <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#0E2A38; margin-bottom:6px;">Compromiso cívico</div>
+            <div style="font-size:13px; color:#6E6A5E; line-height:1.6;">Respeto por las instituciones y costumbres de Argentina.</div>
+          </div>
+        </div>
+        <a style="font-size:13px; font-weight:700; color:#0E2A38; text-decoration:none;">Conocé la historia completa →</a>
+      </div>
+
+      <!-- Activities -->
+      <div style="padding:56px 24px 8px; background:#F0EBDD; margin-top:48px;">
+        <div style="max-width:800px; margin:0 auto;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Agenda</div>
+          <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:26px; color:#0E2A38; margin:0 0 24px;">Próximas actividades</h2>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:20px; margin-bottom:20px;">
+            <sc-for list="{{ activities }}" as="item" hint-placeholder-count="3">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(14,42,56,0.08);">
+                <div style="position:relative; height:150px;">
+                  <img src="{{ item.img }}" alt="" style="width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.92);" />
+                  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,42,56,0.05), rgba(14,42,56,0.25));"></div>
+                  <div style="position:absolute; top:10px; left:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#0E2A38; background:rgba(255,255,255,0.85); border-radius:5px; padding:4px 9px; font-weight:600;">{{ item.label }}</div>
+                </div>
+                <div style="padding:16px;">
+                  <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#0E2A38; margin-bottom:6px; line-height:1.3;">{{ item.title }}</div>
+                  <div style="font-size:12.5px; color:#6E6A5E; line-height:1.55; margin-bottom:10px;">{{ item.desc }}</div>
+                  <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#B9B3A4; text-transform:uppercase; letter-spacing:0.08em;">{{ item.date }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="text-align:right; padding-bottom:16px;"><a style="font-size:13px; font-weight:700; color:#0E2A38; text-decoration:none;">Ver todas las actividades →</a></div>
+        </div>
+      </div>
+
+      <!-- Noticias de la comarca -->
+      <div style="padding:56px 24px;">
+        <div style="max-width:800px; margin:0 auto;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#3F6B4A; margin-bottom:10px;">Desde allá</div>
+          <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:26px; color:#0E2A38; margin:0 0 10px;">Noticias de la comarca de Deza</h2>
+          <p style="font-size:14px; line-height:1.7; color:#4A473E; max-width:560px; margin:0 0 24px;">Lo que pasa en Lalín, Agolada y Silleda — para no perder el pulso de la tierra, la vivas o no de cerca.</p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px;">
+            <sc-for list="{{ comarcaNews }}" as="cn" hint-placeholder-count="3">
+              <div style="background:#fff; border:1px solid #E4DECD; border-left:3px solid #3F6B4A; border-radius:8px; padding:18px; position:relative;">
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#3F6B4A; font-weight:700; margin-bottom:8px;">{{ cn.town }}</div>
+                <div style="font-size:13px; color:#9C978A; font-style:italic; line-height:1.6; padding-right:16px;">{{ cn.placeholder }}</div>
+                <div style="position:absolute; right:14px; bottom:14px; font-size:14px; color:#B9B3A4;">→</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- Join CTA band -->
+      <div style="background:#0E2A38; padding:56px 24px; text-align:center;">
+        <div style="max-width:480px; margin:0 auto;">
+          <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:24px; color:#fff; margin:0 0 12px;">Sumate a la comunidad digital del Centro</h2>
+          <p style="font-size:13.5px; color:rgba(255,255,255,0.75); line-height:1.6; margin:0 0 24px;">Asociarte te permite estar al día con las actividades y apoyar la continuidad de la cultura gallega en Argentina.</p>
+          <a style="display:inline-block; font-size:13px; font-weight:700; color:#141414; background:#D9B23C; border-radius:8px; padding:13px 26px; text-decoration:none;">Asociate al Centro →</a>
+        </div>
+      </div>
+
+      <!-- Board teaser -->
+      <div style="padding:48px 24px; text-align:center;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Autoridades</div>
+        <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:22px; color:#0E2A38; margin:0 0 16px;">Comisión Directiva</h2>
+        <div style="display:flex; justify-content:center; margin-bottom:14px;">
+          <div style="width:44px; height:44px; border-radius:50%; background:#0E2A38; border:3px solid #FAF7F0; margin-right:-14px;"></div>
+          <div style="width:44px; height:44px; border-radius:50%; background:#3F6B4A; border:3px solid #FAF7F0; margin-right:-14px;"></div>
+          <div style="width:44px; height:44px; border-radius:50%; background:#B4502E; border:3px solid #FAF7F0; margin-right:-14px;"></div>
+          <div style="width:44px; height:44px; border-radius:50%; background:#C9A227; border:3px solid #FAF7F0;"></div>
+        </div>
+        <p style="font-size:13.5px; color:#6E6A5E; max-width:360px; margin:0 auto 16px;">24 socios elegidos por la asamblea conducen la institución.</p>
+        <div><a style="font-size:13px; font-weight:700; color:#0E2A38; text-decoration:none;">Ver la Comisión Directiva completa →</a></div>
+      </div>
+
+      <!-- Footer -->
+      <div style="background:#081720; color:rgba(255,255,255,0.85); padding:40px 24px 22px;">
+        <div style="display:flex; flex-wrap:wrap; gap:40px; margin-bottom:28px;">
+          <div style="min-width:140px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:12px;">Secciones</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;"><a style="color:rgba(255,255,255,0.85); text-decoration:none;">Historia</a><a style="color:rgba(255,255,255,0.85); text-decoration:none;">Actividades</a><a style="color:rgba(255,255,255,0.85); text-decoration:none;">Galería</a><a style="color:rgba(255,255,255,0.85); text-decoration:none;">Participá</a></div>
+          </div>
+          <div style="min-width:140px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:12px;">Contacto</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; margin-bottom:16px;"><a style="color:rgba(255,255,255,0.85); text-decoration:none;">secretaria@dezar.org</a><a style="color:rgba(255,255,255,0.85); text-decoration:none;">Moreno 1949, CABA</a></div>
+            <div style="display:flex; gap:10px;">
+              <a style="display:flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:12px; opacity:0.95;" style-hover="opacity:1; transform:translateY(-2px);">
+                <svg width="42" height="42" viewBox="0 0 24 24"><defs><linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#FEDA75"/><stop offset="30%" stop-color="#F58529"/><stop offset="55%" stop-color="#DD2A7B"/><stop offset="80%" stop-color="#8134AF"/><stop offset="100%" stop-color="#515BD4"/></linearGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#igGrad)"/><rect x="6.3" y="6.3" width="11.4" height="11.4" rx="3.6" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="3.2" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="17" cy="7" r="0.9" fill="#fff"/></svg>
+              </a>
+              <a style="display:flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:12px; opacity:0.95;" style-hover="opacity:1; transform:translateY(-2px);">
+                <svg width="42" height="42" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#1877F2"/><path d="M15 8.6H13.4C12.9 8.6 12.5 9 12.5 9.6V11.2H15L14.7 13.6H12.5V19.4H9.9V13.6H8.1V11.2H9.9V9.4C9.9 7.7 11.3 6.4 12.9 6.4H15V8.6Z" fill="#fff"/></svg>
+              </a>
+            </div>
+          </div>
+          <div style="flex:1; min-width:220px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:12px;">Recibí novedades</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <div style="flex:1; min-width:140px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); border-radius:7px; padding:10px 12px; font-size:12.5px; color:rgba(255,255,255,0.5);">tucorreo@dominio.com</div>
+              <div style="background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.22); border-radius:7px; padding:10px 16px; font-size:12.5px; font-weight:600; white-space:nowrap;">Suscribirme</div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; font-size:11px; color:rgba(255,255,255,0.5);">
+          <span>© 2026 Galicia Migrante</span>
+          <a style="display:flex; align-items:center; gap:6px; color:rgba(255,255,255,0.6); text-decoration:none;">
+            <span>by</span>
+            <span style="font-family:'Fraunces',serif; font-weight:600; font-size:12px; color:rgba(255,255,255,0.85); letter-spacing:0.02em;">PLM Systems</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DARK MODE SWATCH ============ -->
+  <div data-screen-label="Modo noche — propuesta" style="max-width:100%; display:flex; flex-direction:column; align-items:center; margin:64px 0 16px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#6E6A5E; margin-bottom:12px;">Modo noche — propuesta (mismo sitio, no es solo "invertir colores")</div>
+    <div style="width:{{ frameWidth }}px; max-width:100%; background:#0B1A20; border-radius:16px; overflow:hidden; box-shadow:0 30px 70px rgba(0,0,0,0.45); border:1px solid rgba(255,255,255,0.08);">
+
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:42px; height:42px; border-radius:50%; background:#fff; padding:4px; flex-shrink:0;"><img src="assets/logo.jpg" alt="" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" /></div>
+          <div>
+            <div style="font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:#F3EFE3;">Centro Lalín, Agolada y Silleda</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:20px; padding:6px 6px 6px 14px;">
+          <span style="font-size:11px; color:#A9A79C;">Noche</span>
+          <div style="width:34px; height:18px; border-radius:10px; background:#D9B23C; position:relative;"><div style="width:14px; height:14px; border-radius:50%; background:#0B1A20; position:absolute; right:2px; top:2px;"></div></div>
+        </div>
+      </div>
+
+      <div style="position:relative; padding:48px 24px 36px;">
+        <img src="assets/banner.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.5;" />
+        <div style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(6,15,19,0.96) 30%, rgba(6,15,19,0.7) 85%);"></div>
+        <div style="position:relative; max-width:520px;">
+          <h1 style="font-family:'Fraunces',serif; font-weight:600; font-size:32px; line-height:1.15; color:#F3EFE3; margin:0 0 14px;">Deza en Bos Aires.</h1>
+          <p style="font-size:14px; line-height:1.7; color:#C7C4B8; margin:0 0 22px;">El lugar de quienes llegaron a estas tierras desde su querida comarca — y de sus hijos y nietos que heredaron toda la morriña por la tierra do seus pais.</p>
+          <a style="display:inline-block; font-size:12.5px; font-weight:700; color:#0B1A20; background:#E0BB4E; border-radius:8px; padding:11px 20px; text-decoration:none;">Asociate al Centro →</a>
+        </div>
+      </div>
+
+      <div style="padding:36px 24px 40px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:18px;">
+          <sc-for list="{{ activities }}" as="item" hint-placeholder-count="3">
+            <div style="background:#13272F; border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+              <div style="position:relative; height:140px;">
+                <img src="{{ item.img }}" alt="" style="width:100%; height:100%; object-fit:cover; filter:saturate(0.85) brightness(0.9);" />
+                <div style="position:absolute; top:10px; left:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#0B1A20; background:#E0BB4E; border-radius:5px; padding:4px 9px; font-weight:600;">{{ item.label }}</div>
+              </div>
+              <div style="padding:16px;">
+                <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#F3EFE3; margin-bottom:6px;">{{ item.title }}</div>
+                <div style="font-size:12.5px; color:#9CA39D; line-height:1.55;">{{ item.desc }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PATTERN: ACTIVIDADES (listado) ============ -->
+  <div data-screen-label="Patrón — Actividades" style="max-width:100%; display:flex; flex-direction:column; align-items:center; margin:64px 0 16px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#6E6A5E; margin-bottom:12px;">Patrón — página /actividades (mismo sistema)</div>
+    <div style="width:{{ frameWidth }}px; max-width:100%; background:#FAF7F0; border-radius:16px; padding:40px 28px; box-shadow:0 30px 70px rgba(14,42,56,0.18); border:1px solid #E4DECD;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Agenda</div>
+      <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:26px; color:#0E2A38; margin:0 0 20px;">Actividades del Centro</h2>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
+        <div style="background:#0E2A38; color:#fff; font-size:12.5px; font-weight:600; border-radius:20px; padding:8px 16px;">Todas</div>
+        <div style="border:1px solid #DCD6C6; color:#4A473E; font-size:12.5px; border-radius:20px; padding:8px 16px;">Coro y música</div>
+        <div style="border:1px solid #DCD6C6; color:#4A473E; font-size:12.5px; border-radius:20px; padding:8px 16px;">Gastronomía</div>
+        <div style="border:1px solid #DCD6C6; color:#4A473E; font-size:12.5px; border-radius:20px; padding:8px 16px;">Idioma</div>
+        <div style="border:1px solid #DCD6C6; color:#4A473E; font-size:12.5px; border-radius:20px; padding:8px 16px;">Danza</div>
+      </div>
+      <div style="{{ listGridStyle }}">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#9C978A; margin-bottom:6px;">Vista agenda</div>
+          <div style="background:#fff; border:1px solid #E4DECD; border-radius:12px; padding:4px 20px;">
+            <sc-for list="{{ activities }}" as="item" hint-placeholder-count="3">
+              <div style="display:flex; align-items:center; gap:20px; padding:18px 0; border-bottom:1px solid #EDE8D9;">
+                <div style="width:96px; flex-shrink:0; text-align:center;">
+                  <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:#B4502E; font-weight:700; margin-bottom:2px;">Cuándo</div>
+                  <div style="font-family:'Fraunces',serif; font-weight:600; font-size:13.5px; color:#0E2A38; line-height:1.25;">{{ item.date }}</div>
+                </div>
+                <div style="width:1px; align-self:stretch; background:#E4DECD;"></div>
+                <div style="width:56px; height:56px; border-radius:8px; overflow:hidden; flex-shrink:0;"><img src="{{ item.img }}" alt="" style="width:100%; height:100%; object-fit:cover; filter:saturate(0.92);" /></div>
+                <div style="flex:1; min-width:0;">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                    <span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:#C9A227; font-weight:600;">{{ item.label }}</span>
+                    <span style="{{ item.kindStyle }}">{{ item.kind }}</span>
+                  </div>
+                  <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#0E2A38; margin-bottom:3px;">{{ item.title }}</div>
+                  <div style="font-size:12.5px; color:#6E6A5E; line-height:1.5;">{{ item.desc }}</div>
+                </div>
+                <div style="font-size:16px; color:#B9B3A4; flex-shrink:0;">→</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:28px;">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#B4502E; font-weight:700; margin-bottom:10px;">Próximos eventos</div>
+            <sc-for list="{{ events }}" as="ev" hint-placeholder-count="1">
+              <div style="background:#0E2A38; border-radius:12px; overflow:hidden; box-shadow:0 10px 26px rgba(14,42,56,0.2); margin-bottom:14px;">
+                <div style="height:110px;"><img src="{{ ev.img }}" alt="" style="width:100%; height:100%; object-fit:cover;" /></div>
+                <div style="padding:16px;">
+                  <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:#D9B23C; font-weight:700; margin-bottom:6px;">{{ ev.date }}</div>
+                  <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#fff; margin-bottom:6px;">{{ ev.title }}</div>
+                  <div style="font-size:12px; color:rgba(255,255,255,0.75); line-height:1.5;">{{ ev.desc }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#9C978A; font-weight:700; margin-bottom:10px;">Novedades</div>
+            <div style="background:#fff; border:1px solid #E4DECD; border-radius:12px; padding:6px 18px;">
+              <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+                <div style="padding:14px 0; border-bottom:1px solid #EDE8D9;">
+                  <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#B9B3A4; margin-bottom:4px;">{{ n.date }}</div>
+                  <div style="font-family:'Fraunces',serif; font-weight:600; font-size:13.5px; color:#0E2A38; margin-bottom:4px; line-height:1.3;">{{ n.title }}</div>
+                  <div style="font-size:12px; color:#6E6A5E; line-height:1.5; margin-bottom:6px;">{{ n.excerpt }}</div>
+                  <a style="font-size:11.5px; font-weight:700; color:#0E2A38; text-decoration:none;">Leer más →</a>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PATTERN: COMISIÓN DIRECTIVA ============ -->
+  <div data-screen-label="Patrón — Comisión Directiva" style="max-width:100%; display:flex; flex-direction:column; align-items:center; margin:64px 0 16px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#6E6A5E; margin-bottom:12px;">Patrón — Autoridades (2 columnas desktop, 1 columna tablet/móvil)</div>
+    <div style="width:{{ frameWidth }}px; max-width:100%; background:#FAF7F0; border-radius:16px; padding:40px 28px; box-shadow:0 30px 70px rgba(14,42,56,0.18); border:1px solid #E4DECD;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Autoridades</div>
+      <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:22px; color:#0E2A38; margin:0 0 6px;">Comisión Directiva</h2>
+      <p style="font-size:13px; color:#6E6A5E; line-height:1.6; max-width:520px; margin:0 0 20px;">Elegida en asambleas de socios 2024/2025.</p>
+      <div style="{{ boardGridStyle }}">
+        <div>
+          <sc-for list="{{ directivaCol1 }}" as="m" hint-placeholder-count="11">
+            <div style="display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid #EDE8D9;">
+              <div style="width:64px; height:64px; border-radius:50%; background:#0E2A38; flex-shrink:0; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="4" fill="rgba(255,255,255,0.85)"/><path d="M4 20.5C4 16.5 7.5 14 12 14C16.5 14 20 16.5 20 20.5" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" fill="none"/></svg></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:#C9A227; font-weight:600; margin-bottom:3px;">{{ m.role }}</div>
+                <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#1C2321; margin-bottom:2px; line-height:1.25;">{{ m.name }}</div>
+                <div style="font-size:11px; color:#9C978A;">{{ m.term }}</div>
+              </div>
+              <div style="flex:1; min-width:0; font-size:11px; color:#B9B3A4; font-style:italic; line-height:1.5;">{{ m.cv }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div>
+          <sc-for list="{{ directivaCol2 }}" as="m" hint-placeholder-count="10">
+            <div style="display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid #EDE8D9;">
+              <div style="width:64px; height:64px; border-radius:50%; background:#0E2A38; flex-shrink:0; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="4" fill="rgba(255,255,255,0.85)"/><path d="M4 20.5C4 16.5 7.5 14 12 14C16.5 14 20 16.5 20 20.5" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" fill="none"/></svg></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:#C9A227; font-weight:600; margin-bottom:3px;">{{ m.role }}</div>
+                <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#1C2321; margin-bottom:2px; line-height:1.25;">{{ m.name }}</div>
+                <div style="font-size:11px; color:#9C978A;">{{ m.term }}</div>
+              </div>
+              <div style="flex:1; min-width:0; font-size:11px; color:#B9B3A4; font-style:italic; line-height:1.5;">{{ m.cv }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:22px; color:#0E2A38; margin:36px 0 6px;">Comisión Revisora de Cuentas</h2>
+      <p style="font-size:13px; color:#6E6A5E; line-height:1.6; max-width:520px; margin:0 0 20px;">Fiscaliza el ejercicio de la Comisión Directiva.</p>
+      <div style="{{ boardGridStyle }}">
+        <div>
+          <sc-for list="{{ revisoraCol1 }}" as="m" hint-placeholder-count="2">
+            <div style="display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid #EDE8D9;">
+              <div style="width:64px; height:64px; border-radius:50%; background:#3F6B4A; flex-shrink:0; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="4" fill="rgba(255,255,255,0.85)"/><path d="M4 20.5C4 16.5 7.5 14 12 14C16.5 14 20 16.5 20 20.5" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" fill="none"/></svg></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:#C9A227; font-weight:600; margin-bottom:3px;">{{ m.role }}</div>
+                <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#1C2321; margin-bottom:2px; line-height:1.25;">{{ m.name }}</div>
+                <div style="font-size:11px; color:#9C978A;">{{ m.term }}</div>
+              </div>
+              <div style="flex:1; min-width:0; font-size:11px; color:#B9B3A4; font-style:italic; line-height:1.5;">{{ m.cv }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div>
+          <sc-for list="{{ revisoraCol2 }}" as="m" hint-placeholder-count="1">
+            <div style="display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid #EDE8D9;">
+              <div style="width:64px; height:64px; border-radius:50%; background:#3F6B4A; flex-shrink:0; display:flex; align-items:center; justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="4" fill="rgba(255,255,255,0.85)"/><path d="M4 20.5C4 16.5 7.5 14 12 14C16.5 14 20 16.5 20 20.5" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" fill="none"/></svg></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:#C9A227; font-weight:600; margin-bottom:3px;">{{ m.role }}</div>
+                <div style="font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#1C2321; margin-bottom:2px; line-height:1.25;">{{ m.name }}</div>
+                <div style="font-size:11px; color:#9C978A;">{{ m.term }}</div>
+              </div>
+              <div style="flex:1; min-width:0; font-size:11px; color:#B9B3A4; font-style:italic; line-height:1.5;">{{ m.cv }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PATTERN: ASOCIATE (formulario) ============ -->
+  <div data-screen-label="Patrón — Asociate" style="max-width:100%; display:flex; flex-direction:column; align-items:center; margin:64px 0 8px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#6E6A5E; margin-bottom:12px;">Patrón — página /asociate (formulario en 3 pasos)</div>
+    <div style="width:{{ frameWidth }}px; max-width:100%; background:#FAF7F0; border-radius:16px; padding:40px 28px; box-shadow:0 30px 70px rgba(14,42,56,0.18); border:1px solid #E4DECD;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Asociate</div>
+      <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:24px; color:#0E2A38; margin:0 0 10px;">Solicitud de socio</h2>
+      <p style="font-size:13.5px; color:#6E6A5E; line-height:1.6; max-width:520px; margin:0 0 28px;">Completá tus datos para solicitar el ingreso como socio. La Comisión Directiva se pondrá en contacto para continuar con el trámite.</p>
+
+      <div style="display:flex; align-items:center; gap:24px; margin-bottom:32px; flex-wrap:wrap;">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="{{ st.dotStyle }}"></div>
+            <div style="font-size:12.5px; {{ st.labelStyle }}">{{ st.name }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ isStep0 }}">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#0E2A38; font-weight:600; margin-bottom:14px; border-bottom:1px solid #E4DECD; padding-bottom:10px;">Datos personales</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:16px; margin-bottom:8px;">
+          <sc-for list="{{ personalFields }}" as="f" hint-placeholder-count="8">
+            <div>
+              <div style="font-size:11.5px; color:#4A473E; font-weight:600; margin-bottom:6px;">{{ f.label }}</div>
+              <div style="background:#fff; border:1px solid #DCD6C6; border-radius:8px; padding:10px 13px; font-size:12.5px; color:#B9B3A4; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                <span>{{ f.placeholder }}</span>
+                <sc-if value="{{ f.isSelect }}"><span style="color:#9C978A;">⌄</span></sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep1 }}">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#0E2A38; font-weight:600; margin-bottom:14px; border-bottom:1px solid #E4DECD; padding-bottom:10px;">Domicilio</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin-bottom:8px;">
+          <sc-for list="{{ addressFields }}" as="f" hint-placeholder-count="9">
+            <div>
+              <div style="font-size:11.5px; color:#4A473E; font-weight:600; margin-bottom:6px;">{{ f.label }}</div>
+              <div style="background:#fff; border:1px solid #DCD6C6; border-radius:8px; padding:10px 13px; font-size:12.5px; color:#B9B3A4;">{{ f.placeholder }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#0E2A38; font-weight:600; margin-bottom:14px; border-bottom:1px solid #E4DECD; padding-bottom:10px;">Nacionalidad</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); gap:16px; margin-bottom:20px;">
+          <sc-for list="{{ nationalityFields }}" as="f" hint-placeholder-count="6">
+            <div>
+              <div style="font-size:11.5px; color:#4A473E; font-weight:600; margin-bottom:6px;">{{ f.label }}</div>
+              <div style="background:#fff; border:1px solid #DCD6C6; border-radius:8px; padding:10px 13px; font-size:12.5px; color:#B9B3A4; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                <span>{{ f.placeholder }}</span>
+                <sc-if value="{{ f.isSelect }}"><span style="color:#9C978A;">⌄</span></sc-if>
+                <sc-if value="{{ f.isDate }}"><span style="color:#9C978A;">📅</span></sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-bottom:8px;">
+          <div style="font-size:11.5px; color:#4A473E; font-weight:600; margin-bottom:6px;">Empadronamiento en España</div>
+          <div style="display:flex; gap:8px;">
+            <div onClick="{{ setEmpadronSi }}" style="{{ empadronSiStyle }}">Sí</div>
+            <div onClick="{{ setEmpadronNo }}" style="{{ empadronNoStyle }}">No</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#0E2A38; font-weight:600; margin-bottom:14px; border-bottom:1px solid #E4DECD; padding-bottom:10px;">Socio que presenta <span style="color:#9C978A; text-transform:none; font-weight:400; letter-spacing:0;">(opcional)</span></div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:16px; margin-bottom:24px;">
+          <sc-for list="{{ referrerFields }}" as="f" hint-placeholder-count="2">
+            <div>
+              <div style="font-size:11.5px; color:#4A473E; font-weight:600; margin-bottom:6px;">{{ f.label }}</div>
+              <div style="background:#fff; border:1px solid #DCD6C6; border-radius:8px; padding:10px 13px; font-size:12.5px; color:#B9B3A4;">{{ f.placeholder }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; background:#F0EBDD; border-radius:10px; padding:16px 18px; margin-bottom:24px;">
+          <div style="width:56px; height:56px; border-radius:10px; background:#DCD6C6; flex-shrink:0;"></div>
+          <div style="font-size:12.5px; color:#4A473E; line-height:1.6;">Foto tomada en el momento con la cámara — reemplaza a la firma y verifica identidad.</div>
+        </div>
+
+        <div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:8px;">
+          <div onClick="{{ toggleDeclared }}" style="{{ checkboxStyle }}">✓</div>
+          <div onClick="{{ toggleDeclared }}" style="font-size:12px; color:#6E6A5E; line-height:1.5; cursor:pointer;">Declaro y acepto los Estatutos vigentes y los reglamentos de la Institución.</div>
+        </div>
+      </sc-if>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:20px; border-top:1px solid #E4DECD;">
+        <sc-if value="{{ isStep0 }}"><div></div></sc-if>
+        <sc-if value="{{ isStep1 }}"><a onClick="{{ goPrevStep }}" style="font-size:13px; font-weight:700; color:#6E6A5E; text-decoration:none; cursor:pointer;">← Atrás</a></sc-if>
+        <sc-if value="{{ isStep2 }}"><a onClick="{{ goPrevStep }}" style="font-size:13px; font-weight:700; color:#6E6A5E; text-decoration:none; cursor:pointer;">← Atrás</a></sc-if>
+        <sc-if value="{{ isStep3 }}"><a onClick="{{ goPrevStep }}" style="font-size:13px; font-weight:700; color:#6E6A5E; text-decoration:none; cursor:pointer;">← Atrás</a></sc-if>
+
+        <sc-if value="{{ isStep3 }}">
+          <a style="display:inline-block; font-size:13px; font-weight:700; color:#fff; background:#141414; border-radius:8px; padding:13px 26px; text-decoration:none; cursor:pointer;">Enviar solicitud</a>
+        </sc-if>
+        <sc-if value="{{ isStep0 }}">
+          <a onClick="{{ goNextStep }}" style="display:inline-block; font-size:13px; font-weight:700; color:#141414; background:#D9B23C; border-radius:8px; padding:13px 26px; text-decoration:none; cursor:pointer;">Continuar →</a>
+        </sc-if>
+        <sc-if value="{{ isStep1 }}">
+          <a onClick="{{ goNextStep }}" style="display:inline-block; font-size:13px; font-weight:700; color:#141414; background:#D9B23C; border-radius:8px; padding:13px 26px; text-decoration:none; cursor:pointer;">Continuar →</a>
+        </sc-if>
+        <sc-if value="{{ isStep2 }}">
+          <a onClick="{{ goNextStep }}" style="display:inline-block; font-size:13px; font-weight:700; color:#141414; background:#D9B23C; border-radius:8px; padding:13px 26px; text-decoration:none; cursor:pointer;">Continuar →</a>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+  <!-- ============ PATTERN: LOGIN Y PORTAL DE SOCIOS (Fase 2 — concepto) ============ -->
+  <div data-screen-label="Patrón — Login y portal" style="max-width:100%; display:flex; flex-direction:column; align-items:center; margin:64px 0 16px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#6E6A5E; margin-bottom:6px;">Patrón — Login y portal de socios</div>
+    <div style="font-size:12.5px; color:#9C978A; max-width:520px; text-align:center; margin-bottom:24px; line-height:1.6;">Concepto general (Fase 2 del spec, a confirmar antes de desarrollar): quien se asocia después puede loguearse. Autorizados → panel de gestión. Socios → cuotas, carnet digital y reservas.</div>
+
+    <div style="width:{{ frameWidth }}px; max-width:100%; background:#FAF7F0; border-radius:16px; padding:40px 28px; box-shadow:0 30px 70px rgba(14,42,56,0.18); border:1px solid #E4DECD;">
+
+      <!-- Admin: métodos de login habilitados -->
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Configuración del administrador</div>
+      <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:#0E2A38; margin:0 0 6px;">Métodos de inicio de sesión habilitados</h2>
+      <p style="font-size:13px; color:#6E6A5E; line-height:1.6; margin:0 0 20px; max-width:520px;">El administrador decide qué métodos están disponibles para los socios. Probá los switches.</p>
+
+      <div style="display:flex; flex-direction:column; gap:2px; background:#fff; border:1px solid #E4DECD; border-radius:10px; padding:6px 18px; margin-bottom:36px; max-width:480px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid #EDE8D9;">
+          <div>
+            <div style="font-size:13.5px; font-weight:600; color:#1C2321;">Biométrico (Face ID / huella)</div>
+            <div style="font-size:11.5px; color:#9C978A;">Solo en celulares compatibles</div>
+          </div>
+          <div onClick="{{ toggleLoginBiometric }}" style="{{ biometricSwitchStyle }}"><div style="{{ biometricKnobStyle }}"></div></div>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid #EDE8D9;">
+          <div>
+            <div style="font-size:13.5px; font-weight:600; color:#1C2321;">Número de socio + DNI</div>
+            <div style="font-size:11.5px; color:#9C978A;">Sin necesidad de crear contraseña</div>
+          </div>
+          <div onClick="{{ toggleLoginMemberDni }}" style="{{ memberDniSwitchStyle }}"><div style="{{ memberDniKnobStyle }}"></div></div>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 0;">
+          <div>
+            <div style="font-size:13.5px; font-weight:600; color:#1C2321;">Email y contraseña</div>
+            <div style="font-size:11.5px; color:#9C978A;">Método tradicional</div>
+          </div>
+          <div onClick="{{ toggleLoginEmailPass }}" style="{{ emailPassSwitchStyle }}"><div style="{{ emailPassKnobStyle }}"></div></div>
+        </div>
+      </div>
+
+      <!-- Login screen -->
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:#B4502E; margin-bottom:10px;">Pantalla de login</div>
+      <div style="max-width:360px; background:#fff; border:1px solid #E4DECD; border-radius:14px; padding:32px 28px; margin-bottom:36px; box-shadow:0 10px 30px rgba(14,42,56,0.1);">
+        <img src="assets/logo.jpg" alt="" style="width:48px; height:48px; border-radius:50%; object-fit:cover; margin-bottom:16px;" />
+        <div style="font-family:'Fraunces',serif; font-weight:600; font-size:19px; color:#0E2A38; margin-bottom:6px;">Ingresá a tu cuenta</div>
+        <div style="font-size:12.5px; color:#6E6A5E; margin-bottom:22px;">Socios y comisión directiva.</div>
+
+        <sc-if value="{{ loginBiometric }}">
+          <div style="display:flex; align-items:center; justify-content:center; gap:10px; background:#0E2A38; color:#fff; font-size:13px; font-weight:700; border-radius:8px; padding:13px; margin-bottom:16px; cursor:pointer;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 2 4 5.5 4 10v3c0 5 3.5 8 3.5 8M12 2c5 0 8 3.5 8 8v3M8 10c0-2.2 1.8-4 4-4s4 1.8 4 4v3c0 1-.3 3-2 4.5M12 10v4c0 2 1 3.5 2.5 4.5M9 15.5c.5 1.5 1.8 3 3 3.8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+            Ingresar con Face ID / huella
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ loginMemberDni }}">
+          <div style="display:flex; align-items:center; gap:10px; margin:16px 0;"><div style="flex:1; height:1px; background:#E4DECD;"></div><span style="font-size:11px; color:#9C978A;">Número de socio</span><div style="flex:1; height:1px; background:#E4DECD;"></div></div>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+            <div style="background:#FAF7F0; border:1px solid #DCD6C6; border-radius:8px; padding:11px 14px; font-size:12.5px; color:#B9B3A4;">Ej. 1029</div>
+            <div style="background:#FAF7F0; border:1px solid #DCD6C6; border-radius:8px; padding:11px 14px; font-size:12.5px; color:#B9B3A4;">DNI</div>
+          </div>
+          <div style="text-align:center; font-size:13px; font-weight:700; color:#141414; background:#D9B23C; border-radius:8px; padding:12px; cursor:pointer;">Ingresar</div>
+        </sc-if>
+
+        <sc-if value="{{ loginEmailPass }}">
+          <div style="display:flex; align-items:center; gap:10px; margin:16px 0;"><div style="flex:1; height:1px; background:#E4DECD;"></div><span style="font-size:11px; color:#9C978A;">Email y contraseña</span><div style="flex:1; height:1px; background:#E4DECD;"></div></div>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+            <div style="background:#FAF7F0; border:1px solid #DCD6C6; border-radius:8px; padding:11px 14px; font-size:12.5px; color:#B9B3A4;">tucorreo@dominio.com</div>
+            <div style="background:#FAF7F0; border:1px solid #DCD6C6; border-radius:8px; padding:11px 14px; font-size:12.5px; color:#B9B3A4;">••••••••</div>
+          </div>
+          <div style="text-align:center; font-size:13px; font-weight:700; color:#fff; background:#141414; border-radius:8px; padding:12px; cursor:pointer;">Ingresar</div>
+        </sc-if>
+
+        <sc-if value="{{ noLoginMethods }}">
+          <div style="font-size:12.5px; color:#B4502E; text-align:center; padding:20px 0;">Ningún método habilitado — activá al menos uno arriba.</div>
+        </sc-if>
+
+        <div style="text-align:center; font-size:12px; color:#9C978A; margin-top:18px;">¿Todavía no sos socio? <span style="color:#0E2A38; font-weight:700;">Asociate →</span></div>
+      </div>
+
+      <!-- Portal previews -->
+      <div style="{{ boardGridStyle }}">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#3F6B4A; font-weight:700; margin-bottom:12px;">Portal del socio</div>
+          <div style="font-size:13px; color:#4A473E; margin-bottom:14px;">Hola, María 👋</div>
+
+          <div style="background:linear-gradient(135deg, #0E2A38, #081720); border-radius:14px; padding:20px; color:#fff; margin-bottom:16px; position:relative; overflow:hidden;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
+              <div>
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:#D9B23C; margin-bottom:4px;">Carnet digital</div>
+                <div style="font-family:'Fraunces',serif; font-weight:600; font-size:16px;">María González Costa</div>
+                <div style="font-size:11px; color:rgba(255,255,255,0.6); margin-top:2px;">Socio N° 1029 · Titular</div>
+              </div>
+              <img src="assets/logo.jpg" alt="" style="width:32px; height:32px; border-radius:50%; object-fit:cover;" />
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+              <div style="font-size:10.5px; color:rgba(255,255,255,0.6);">Vigente hasta 12/2026</div>
+              <div style="display:grid; grid-template-columns:repeat(5,4px); grid-template-rows:repeat(5,4px); gap:1.5px; background:#fff; padding:6px; border-radius:4px;">
+                <sc-for list="{{ qrCells }}" as="c" hint-placeholder-count="25"><div style="{{ c.style }}"></div></sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div style="background:#fff; border:1px solid #E4DECD; border-radius:10px; padding:14px; text-align:center;">
+              <div style="font-size:12.5px; font-weight:600; color:#0E2A38;">Pagar cuota</div>
+              <div style="font-size:10.5px; color:#9C978A; margin-top:2px;">Al día · Jul 2026</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E4DECD; border-radius:10px; padding:14px; text-align:center;">
+              <div style="font-size:12.5px; font-weight:600; color:#0E2A38;">Reservar salón / restó</div>
+              <div style="font-size:10.5px; color:#9C978A; margin-top:2px;">Ver disponibilidad</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase; color:#B4502E; font-weight:700; margin-bottom:12px;">Panel del autorizado</div>
+          <div style="font-size:13px; color:#4A473E; margin-bottom:14px;">Comisión Directiva</div>
+
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:#fff; border:1px solid #E4DECD; border-radius:10px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between;">
+              <div style="font-size:13px; font-weight:600; color:#1C2321;">Solicitudes de socio pendientes</div>
+              <div style="background:#B4502E; color:#fff; font-size:11px; font-weight:700; border-radius:10px; padding:2px 9px;">3</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E4DECD; border-radius:10px; padding:14px 16px;">
+              <div style="font-size:13px; font-weight:600; color:#1C2321; margin-bottom:2px;">Socios y estado de cuotas</div>
+              <div style="font-size:11.5px; color:#9C978A;">412 socios · 27 con cuota atrasada</div>
+            </div>
+            <div style="background:#0E2A38; color:#fff; border-radius:10px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between;">
+              <div style="font-size:13px; font-weight:600;">Cargar actividad o novedad</div>
+              <div style="font-size:16px;">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { viewport: 'desktop', navOpen: false, heroSlide: 0, asociateStep: 0, loginBiometric: true, loginMemberDni: true, loginEmailPass: false };
+
+  componentDidMount() {
+    this._heroTimer = setInterval(() => {
+      this.setState((s) => ({ heroSlide: (s.heroSlide + 1) % 3 }));
+    }, 4200);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._heroTimer);
+  }
+
+  renderVals() {
+    const viewport = this.state.viewport;
+    const frameWidth = viewport === 'mobile' ? 390 : viewport === 'tablet' ? 834 : 1180;
+    const isDesktop = viewport === 'desktop';
+    const isTablet = viewport === 'tablet';
+    const isMobile = viewport === 'mobile';
+    const isCompactNav = !isDesktop;
+    const viewportLabel = isDesktop ? 'escritorio' : isTablet ? 'tablet' : 'móvil';
+
+    const activeBtn = { background: '#0E2A38', color: '#fff', border: 'none', borderRadius: '7px', padding: '8px 16px', fontSize: '12.5px', fontWeight: 600, cursor: 'pointer' };
+    const inactiveBtn = { background: 'transparent', color: '#4A473E', border: 'none', borderRadius: '7px', padding: '8px 16px', fontSize: '12.5px', fontWeight: 600, cursor: 'pointer' };
+
+    const pillActividad = "font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#2E5138; background:#E4EEE3; border-radius:10px; padding:2px 8px; font-weight:600;";
+    const pillEvento = "font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#8A3A22; background:#F5E1D6; border-radius:10px; padding:2px 8px; font-weight:600;";
+
+    const activities = [
+      { label: 'Coro', kind: 'Actividad', kindStyle: pillActividad, title: 'Ensayo abierto del Coro Lalín', desc: 'Encuentro mensual del coro del Centro, abierto a nuevos integrantes.', img: 'assets/coro.jpg', date: 'Próximo sábado' },
+      { label: 'Fiesta', kind: 'Evento', kindStyle: pillEvento, title: 'Fiesta del Cocido', desc: 'Jornada gastronómica y de música tradicional gallega en el salón principal.', img: 'assets/fiesta-cocido.jpg', date: 'Próximo mes' },
+      { label: 'Taller', kind: 'Actividad', kindStyle: pillActividad, title: 'Alas para escribir', desc: 'Taller de lectura y escritura sobre literatura e historia gallega.', img: 'assets/taller-literario.jpg', date: 'Todos los jueves' },
+    ];
+
+    const heroCaptions = ['Ríos y praderas de la comarca de Deza', 'Centro Lalín, Buenos Aires', 'Fiesta del Cocido, Buenos Aires'];
+    const heroImgs = ['assets/banner.jpg', 'assets/coro.jpg', 'assets/fiesta-cocido.jpg'];
+    const heroSlide = this.state.heroSlide;
+    const heroSlides = heroImgs.map((img, i) => ({
+      img,
+      style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === heroSlide ? 1 : 0, transition: 'opacity 1.1s ease' },
+    }));
+    const heroDots = [0, 1, 2].map((i) => ({
+      onClick: () => this.setState({ heroSlide: i }),
+      style: { width: i === heroSlide ? '18px' : '7px', height: '7px', borderRadius: '4px', background: i === heroSlide ? '#D9B23C' : 'rgba(255,255,255,0.45)', transition: 'all 0.3s ease', cursor: 'pointer' },
+    }));
+    const heroCaption = heroCaptions[heroSlide];
+
+    const empadronToggle = this.state.empadronToggle || 'No';
+    const setEmpadronSi = () => this.setState({ empadronToggle: 'Sí' });
+    const setEmpadronNo = () => this.setState({ empadronToggle: 'No' });
+    const toggleBtnStyle = (active) => ({
+      fontSize: '12.5px', fontWeight: 600, padding: '9px 16px', borderRadius: '7px', cursor: 'pointer',
+      background: active ? '#0E2A38' : '#fff', color: active ? '#fff' : '#4A473E', border: active ? 'none' : '1px solid #DCD6C6',
+    });
+
+    const personalFields = [
+      { label: 'Nombres', placeholder: 'Ej. María', kind: 'text' },
+      { label: 'Apellidos', placeholder: 'Ej. González', kind: 'text' },
+      { label: 'Tipo de documento', placeholder: 'DNI', kind: 'select' },
+      { label: 'Número de documento', placeholder: 'Ej. 30123456', kind: 'text' },
+      { label: 'Estado civil', placeholder: 'Soltero/a', kind: 'select' },
+      { label: 'Cónyuge', placeholder: 'Nombre y apellido', kind: 'text' },
+      { label: 'Hijos', placeholder: 'Cantidad / nombres', kind: 'text' },
+      { label: 'Profesión', placeholder: 'Ej. Docente', kind: 'text' },
+    ].map((f) => ({ ...f, isSelect: f.kind === 'select', isDate: f.kind === 'date' }));
+
+    const nationalityFields = [
+      { label: 'País de nacimiento', placeholder: 'Argentina', kind: 'select' },
+      { label: 'Provincia', placeholder: 'Pontevedra', kind: 'select' },
+      { label: 'Concello / Municipio', placeholder: 'Lalín', kind: 'select' },
+      { label: 'Localidad', placeholder: 'Ej. Buenos Aires', kind: 'text' },
+      { label: 'Fecha de nacimiento', placeholder: 'dd / mm / aaaa', kind: 'date' },
+      { label: '¿Nativo, hijo o nieto de gallego?', placeholder: 'Nativo', kind: 'select' },
+    ].map((f) => ({ ...f, isSelect: f.kind === 'select', isDate: f.kind === 'date' }));
+    const addressFields = [
+      { label: 'Calle', placeholder: 'Ej. Moreno', isSelect: false },
+      { label: 'Número', placeholder: '1949', isSelect: false },
+      { label: 'Piso', placeholder: '—', isSelect: false },
+      { label: 'Depto.', placeholder: '—', isSelect: false },
+      { label: 'Localidad', placeholder: 'CABA', isSelect: false },
+      { label: 'Código postal', placeholder: 'C1091', isSelect: false },
+      { label: 'Teléfono', placeholder: '011 4xxx-xxxx', isSelect: false },
+      { label: 'Teléfono móvil', placeholder: '11 5xxx-xxxx', isSelect: false },
+      { label: 'Mail', placeholder: 'tucorreo@dominio.com', isSelect: false },
+    ];
+    const referrerFields = [
+      { label: 'Nombre y apellido', placeholder: 'Socio que te presenta', isSelect: false },
+      { label: 'Socio N°', placeholder: 'Ej. 1029', isSelect: false },
+    ];
+
+    const declared = this.state.declared || false;
+    const toggleDeclared = () => this.setState((s) => ({ declared: !s.declared }));
+    const checkboxStyle = {
+      width: '19px', height: '19px', borderRadius: '5px', flexShrink: 0, marginTop: '1px', cursor: 'pointer',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', color: '#fff', fontWeight: 700,
+      background: declared ? '#3F6B4A' : '#fff', border: declared ? 'none' : '1.5px solid #B9B3A4',
+    };
+
+    const asociateStep = this.state.asociateStep;
+    const stepNames = ['Datos personales', 'Domicilio', 'Nacionalidad', 'Confirmación'];
+    const steps = stepNames.map((name, i) => ({
+      name,
+      num: i + 1,
+      dotStyle: {
+        width: i === asociateStep ? '26px' : '9px', height: '9px', borderRadius: '5px',
+        background: i <= asociateStep ? '#0E2A38' : '#DCD6C6', transition: 'all 0.25s ease',
+      },
+      labelStyle: { fontWeight: i === asociateStep ? 700 : 500, color: i === asociateStep ? '#0E2A38' : '#9C978A' },
+    }));
+    const isStep0 = asociateStep === 0;
+    const isStep1 = asociateStep === 1;
+    const isStep2 = asociateStep === 2;
+    const isStep3 = asociateStep === 3;
+    const goNextStep = () => this.setState((s) => ({ asociateStep: Math.min(3, s.asociateStep + 1) }));
+    const goPrevStep = () => this.setState((s) => ({ asociateStep: Math.max(0, s.asociateStep - 1) }));
+
+    const cvPlaceholder = '[PENDIENTE: reseña breve]';
+    const boardDirectivaOrdered = [
+      { role: 'Presidente', name: 'José González Costa', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Vicepresidente', name: 'Manuel Montero Taboada', term: '2024–2026', cv: cvPlaceholder },
+      { role: 'Secretario', name: 'Fernando López Pereyra', term: '2024–2026', cv: cvPlaceholder },
+      { role: 'Tesorero', name: 'Julian Seoane Arceo', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Prosecretaria', name: 'Alicia Cuñarro', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Protesorera', name: 'Nelida Jorge Conde', term: '2024–2026', cv: cvPlaceholder },
+      { role: 'Secretaria de Actas', name: 'Mirta Lagama Gómez', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2024–2026', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2024–2026', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2024–2026', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2024–2026', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Vocal Titular', name: '[PENDIENTE: nombre real]', term: '2025–2027', cv: cvPlaceholder },
+      { role: 'Vocal Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+      { role: 'Vocal Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+      { role: 'Vocal Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+      { role: 'Vocal Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+      { role: 'Vocal Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+      { role: 'Vocal Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+    ];
+    const boardRevisoraOrdered = [
+      { role: 'Revisor de Cuentas Titular', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+      { role: 'Revisor de Cuentas Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+      { role: 'Revisor de Cuentas Suplente', name: '[PENDIENTE: nombre real]', term: '2026–2027', cv: cvPlaceholder },
+    ];
+    const splitCols = (arr) => {
+      const half = Math.ceil(arr.length / 2);
+      return [arr.slice(0, half), arr.slice(half)];
+    };
+    const [directivaCol1, directivaCol2] = splitCols(boardDirectivaOrdered);
+    const [revisoraCol1, revisoraCol2] = splitCols(boardRevisoraOrdered);
+    const boardGridStyle = { display: 'grid', gridTemplateColumns: isDesktop ? '1fr 1fr' : '1fr', columnGap: '32px' };
+
+    const qrPattern = [1,0,1,1,0, 0,1,0,0,1, 1,1,1,0,1, 0,0,1,1,0, 1,0,0,1,1];
+    const qrCells = qrPattern.map((v) => ({ style: { width: '4px', height: '4px', background: v ? '#0E2A38' : '#fff' } }));
+
+    const switchStyle = (on) => ({
+      width: '40px', height: '22px', borderRadius: '11px', position: 'relative', cursor: 'pointer', flexShrink: 0,
+      background: on ? '#3F6B4A' : '#DCD6C6', transition: 'background 0.2s ease',
+    });
+    const switchKnobStyle = (on) => ({
+      width: '16px', height: '16px', borderRadius: '50%', background: '#fff', position: 'absolute', top: '3px',
+      left: on ? '21px' : '3px', transition: 'left 0.2s ease', boxShadow: '0 1px 3px rgba(0,0,0,0.25)',
+    });
+    const toggleLoginBiometric = () => this.setState((s) => ({ loginBiometric: !s.loginBiometric }));
+    const toggleLoginMemberDni = () => this.setState((s) => ({ loginMemberDni: !s.loginMemberDni }));
+    const toggleLoginEmailPass = () => this.setState((s) => ({ loginEmailPass: !s.loginEmailPass }));
+
+    const comarcaNews = [
+      { town: 'Lalín', placeholder: '[PENDIENTE: noticia real de Lalín]' },
+      { town: 'Agolada', placeholder: '[PENDIENTE: noticia real de Agolada]' },
+      { town: 'Silleda', placeholder: '[PENDIENTE: noticia real de Silleda]' },
+    ];
+
+    const events = activities.filter((a) => a.kind === 'Evento');
+    const news = [
+      { date: 'Ejemplo', title: 'Nueva junta directiva 2025–2027', excerpt: 'Se renovaron autoridades en la última Asamblea General Ordinaria.' },
+      { date: 'Ejemplo', title: 'Convenio cultural con Agolada', excerpt: 'Actividades conjuntas para fortalecer el vínculo con el ayuntamiento de origen.' },
+      { date: 'Ejemplo', title: 'Aniversario del Centro', excerpt: 'Repasamos la historia del Centro a más de cuatro décadas de su fundación.' },
+    ];
+    const listGridStyle = { display: 'grid', gridTemplateColumns: isDesktop ? '2fr 1fr' : '1fr', gap: '28px', alignItems: 'start' };
+
+    return {
+      frameWidth,
+      isDesktop,
+      isCompactNav,
+      navOpen: this.state.navOpen,
+      viewportLabel,
+      activities,
+      events,
+      news,
+      directivaCol1,
+      directivaCol2,
+      revisoraCol1,
+      revisoraCol2,
+      boardGridStyle,
+      comarcaNews,
+      loginBiometric: this.state.loginBiometric,
+      loginMemberDni: this.state.loginMemberDni,
+      loginEmailPass: this.state.loginEmailPass,
+      biometricSwitchStyle: switchStyle(this.state.loginBiometric),
+      biometricKnobStyle: switchKnobStyle(this.state.loginBiometric),
+      memberDniSwitchStyle: switchStyle(this.state.loginMemberDni),
+      memberDniKnobStyle: switchKnobStyle(this.state.loginMemberDni),
+      emailPassSwitchStyle: switchStyle(this.state.loginEmailPass),
+      emailPassKnobStyle: switchKnobStyle(this.state.loginEmailPass),
+      toggleLoginBiometric,
+      toggleLoginMemberDni,
+      toggleLoginEmailPass,
+      noLoginMethods: !this.state.loginBiometric && !this.state.loginMemberDni && !this.state.loginEmailPass,
+      qrCells,
+      personalFields,
+      nationalityFields,
+      addressFields,
+      referrerFields,
+      steps,
+      isStep0,
+      isStep1,
+      isStep2,
+      isStep3,
+      goNextStep,
+      goPrevStep,
+      empadronToggle,
+      setEmpadronSi,
+      setEmpadronNo,
+      empadronSiStyle: toggleBtnStyle(empadronToggle === 'Sí'),
+      empadronNoStyle: toggleBtnStyle(empadronToggle === 'No'),
+      declared,
+      toggleDeclared,
+      checkboxStyle,
+      listGridStyle,
+      heroSlides,
+      heroDots,
+      heroCaption,
+      desktopBtnStyle: isDesktop ? activeBtn : inactiveBtn,
+      tabletBtnStyle: isTablet ? activeBtn : inactiveBtn,
+      mobileBtnStyle: isMobile ? activeBtn : inactiveBtn,
+      goDesktop: () => this.setState({ viewport: 'desktop', navOpen: false }),
+      goTablet: () => this.setState({ viewport: 'tablet', navOpen: false }),
+      goMobile: () => this.setState({ viewport: 'mobile', navOpen: false }),
+      toggleNav: () => this.setState((s) => ({ navOpen: !s.navOpen })),
+    };
+  }
+}
+</script>
+</body>
+</html>
