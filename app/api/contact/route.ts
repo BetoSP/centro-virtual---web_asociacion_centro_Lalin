@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
+import { sendNotificationEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,8 +16,10 @@ export async function POST(request: NextRequest) {
 
     if (error) throw error;
 
-    // [PENDIENTE: notificación por email a la institución (Resend) — decisión de costo/cuenta
-    // separada a confirmar antes de activarla]
+    await sendNotificationEmail(
+      'Nuevo mensaje de contacto',
+      `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`
+    );
 
     return NextResponse.json({ success: true, message: 'Mensaje recibido correctamente' }, { status: 200 });
   } catch (error) {

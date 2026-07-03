@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { supabaseAdmin } from '@/lib/supabase';
+import { sendNotificationEmail } from '@/lib/email';
 
 const PHOTO_BUCKET = 'solicitudes-socio-fotos';
 
@@ -65,10 +66,10 @@ export async function POST(request: NextRequest) {
 
     if (insertError) throw insertError;
 
-    // [PENDIENTE: notificación por email a la Comisión Directiva ante cada solicitud nueva
-    // (Resend) — decisión de costo/cuenta separada a confirmar antes de activarla. La categoría
-    // de socio y el número de socio se completan manualmente por la institución vía el panel de
-    // administración (aún no construido, ver PROJECT_SPEC.md §8.2b).]
+    await sendNotificationEmail(
+      'Nueva solicitud de asociación',
+      `Nombre: ${data.firstName} ${data.lastName}\nDocumento: ${data.documentType || ''} ${data.documentNumber}\nEmail: ${data.email}\nTeléfono: ${data.mobilePhone || data.phone || ''}\n\nLa categoría de socio y el número de socio se completan manualmente por la institución (ver PROJECT_SPEC.md §8.2b).`
+    );
     // [PENDIENTE: Verificación de identidad contra RENAPER (reconocimiento facial) con la foto
     // capturada, que sustituye a la firma del solicitante. Requiere convenio/acceso oficial a la
     // API de RENAPER — no implementado hasta contar con esas credenciales.]

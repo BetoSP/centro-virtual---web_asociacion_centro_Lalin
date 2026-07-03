@@ -181,19 +181,18 @@ Todos estos ítems están marcados en el código con placeholders explícitos `[
 
 ### 8.2 Integraciones de backend no implementadas
 
-- Persistencia/notificación del formulario de contacto (Supabase o servicio de email).
-- Persistencia de suscriptores del newsletter (Supabase).
-- Persistencia/notificación de solicitudes de asociación (Supabase/email).
-- Verificación de identidad contra RENAPER usando la foto capturada en el wizard de asociación.
-- Búsqueda de referente/número de socio en el formulario de asociación.
+- ~~Persistencia del formulario de contacto (Supabase).~~ **Hecho (2026-07-02)**: tabla `mensajes_contacto` en Supabase propio de `centro-virtual`, probado en producción (build + Playwright) y contra la base real.
+- ~~Persistencia de suscriptores del newsletter (Supabase).~~ **Hecho (2026-07-02)**: tabla `suscriptores_newsletter`, ídem verificación.
+- ~~Persistencia de solicitudes de asociación (Supabase), incluida la foto de verificación.~~ **Hecho (2026-07-02)**: tabla `solicitudes_socio` + bucket privado `solicitudes-socio-fotos` (Storage), ídem verificación. La verificación en navegador real (no solo `curl`) encontró y corrigió 4 bugs preexistentes que rompían los 3 formularios en producción (ver commit `58fcd22`): reseteo de formulario tras `await` en Contacto y Asociate, pérdida de datos del wizard de Asociate al desmontar pasos anteriores del DOM, captura de foto inválida en `PhotoCapture`, e id duplicado en `NewsletterMiniForm`.
+- ~~Notificación por email de contacto y asociación (Resend).~~ **Código hecho (2026-07-03)**, activación pendiente: `lib/email.ts` expone `sendNotificationEmail()` (best-effort, no rompe el flujo del formulario si falla o no está configurado) y se invoca desde `app/api/contact/route.ts` y `app/api/membership/route.ts` tras el insert en Supabase (newsletter no lo requiere, ver §3.6). Destino (`CONTACT_NOTIFICATION_EMAIL`) y remitente (`EMAIL_FROM`) son variables de entorno vacías en `.env.local` — configurables sin tocar código, sin ningún valor real cargado todavía. Verificado con build de producción + POST reales a ambos endpoints (200 OK, no-op de email confirmado) el 2026-07-03. Falta para activarlo: `RESEND_API_KEY` (cuenta gratuita — límite sandbox: sin dominio propio verificado en Resend, solo entrega al email dueño de la cuenta) y decidir `CONTACT_NOTIFICATION_EMAIL` (candidato mencionado por el usuario: `secretaria@dezar.org`, no cargado aún — requiere verificar dominio en Resend para poder enviarle, o usar esa misma dirección como cuenta de Resend).
+- Verificación de identidad contra RENAPER usando la foto capturada en el wizard de asociación — sigue bloqueada (requiere convenio/credenciales oficiales inexistentes).
+- Búsqueda de referente/número de socio en el formulario de asociación — sigue bloqueada (requiere base de datos de socios real, no existe todavía).
 
-Ninguna de estas integraciones está construida todavía; los formularios existen en el frontend pero no persisten datos en un backend real.
-
-### 8.2b Panel de administración (hallazgo 2026-07-02, no registrado antes en este documento)
+### 8.2b Panel de administración (hallazgo 2026-07-02, resuelto 2026-07-03)
 
 `app/admin` existe como carpeta pero está vacía — no hay ningún panel construido. Esto incumple un requisito explícito de §3.3 ("Panel de administración simple para que la comisión directiva pueda cargar eventos y novedades sin tocar código") y el criterio de aceptación de §3.6 ("La comisión directiva puede publicar un evento o novedad sin ayuda técnica"). Hoy todo el contenido vive en `content/*.ts` y cualquier cambio requiere editar código.
 
-No se resuelve en esta iteración — requiere su propia decisión de alcance (CMS headless vs. panel propio mínimo, autenticación para 2-3 usuarios, qué entidades administra) antes de escribir código, por la regla de CLAUDE.md de proponer estructura y esperar OK. El usuario confirmó (2026-07-02) que es un pendiente real que debe resolverse antes del lanzamiento a producción (todos los requisitos de Fase 1 deben cumplirse al 100%), pero decidió que se planifique como tarea aparte, después de cerrar el adaptador de datos de la integración con el Portal (§4.6, §8.4).
+**Resuelto (2026-07-03): no se construye en este repo.** `doc/GUIA_INTEGRACION_MICROSITIOS.md` §7.2/§11.1/§13 asigna el CMS/panel de administración — incluida su versión temporal/simplificada de carga inicial (§11.1, Hito a, punto 3) y la definitiva (§11.1, Hito b, punto 2) — como tarea del repositorio del **Portal Galicia Migrante**, no de `centro-virtual` (§11.2, tareas de `centro-virtual`, no lo incluye en ningún punto). El usuario, dueño de ambos proyectos, confirmó explícitamente respetar esa división documentada en vez de pisarla. Este requisito de §3.3/§3.6 queda entonces satisfecho mediante el panel que construya el Portal, no mediante código en este repo — sigue siendo un bloqueante real para producción, pero su resolución depende del lado del Portal, no de trabajo pendiente acá.
 
 ### 8.3 Relacionado con Fase 2 (no implementar aún, solo a tener en cuenta al diseñar el modelo de datos de Fase 1)
 
