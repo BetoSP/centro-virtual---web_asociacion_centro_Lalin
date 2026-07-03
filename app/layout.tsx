@@ -43,6 +43,26 @@ export const metadata: Metadata = {
   },
 };
 
+// schema.org/Organization (PROJECT_SPEC.md §3, "SEO básico: metatags, sitemap,
+// datos estructurados de organización") — solo campos con datos reales ya
+// cargados en content/site.config.ts, sin inventar dirección estructurada
+// (calle/ciudad/CP) que no existe como tal en el contenido.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  description: siteConfig.description,
+  url: baseUrl,
+  logo: new URL(siteConfig.logo, baseUrl).toString(),
+  email: siteConfig.email,
+  telephone: siteConfig.whatsapp,
+  address: siteConfig.address,
+  ...(siteConfig.foundingYear ? { foundingDate: String(siteConfig.foundingYear) } : {}),
+  sameAs: siteConfig.socials
+    .filter((social) => !social.href.startsWith("[PENDIENTE"))
+    .map((social) => social.href),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,6 +74,13 @@ export default function RootLayout({
       className={`${fraunces.variable} ${workSans.variable} ${ibmPlex.variable} scroll-smooth`}
     >
       <body className="min-h-screen flex flex-col bg-paper text-ink antialiased" suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         {children}
         <WhatsAppButton />
       </body>

@@ -82,7 +82,7 @@ MensajeContacto
 - [ ] La comisión directiva puede publicar un evento o novedad sin ayuda técnica.
 - [ ] Un visitante puede completar el formulario de asociación y de contacto, y ambos llegan por email a la institución.
 - [ ] El sitio tiene página de historia, actividades y galería con contenido real cargado.
-- [ ] SEO básico configurado (título, descripción, sitemap).
+- [x] SEO básico configurado (título, descripción, sitemap). **Hecho (2026-07-03)**: metatags por página + `app/sitemap.ts` + `app/robots.ts` ya existían; se agregó el dato estructurado `schema.org/Organization` (JSON-LD) que faltaba en `app/layout.tsx`, usando solo campos ya cargados en `content/site.config.ts` (sin inventar dirección estructurada calle/ciudad/CP que no existe como tal en el contenido). Verificado: build de producción + Playwright confirmando que el script parsea como JSON válido y que no hay regresión visual en la home.
 
 ---
 
