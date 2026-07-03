@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, message: 'Mensaje recibido correctamente' }, { status: 200 });
   } catch (error) {
+    console.error('POST /api/contact failed:', error);
     return NextResponse.json({ error: 'Error al procesar tu mensaje' }, { status: 500 });
   }
 }

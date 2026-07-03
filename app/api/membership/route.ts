@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { supabaseAdmin } from '@/lib/supabase';
-import { sendNotificationEmail } from '@/lib/email';
+import { sendNotificationEmail, sendApplicantConfirmationEmail } from '@/lib/email';
+import { whatsappHref } from '@/lib/whatsapp';
+import { getSiteConfig, getMembershipFormContent } from '@/lib/microsite-data';
 
 const PHOTO_BUCKET = 'solicitudes-socio-fotos';
+// [PENDIENTE: dominio real — hoy se usa NEXT_PUBLIC_SITE_URL o un placeholder hasta contratar]
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://centro-lalin-agolada-silleda.example';
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     if (uploadError) throw uploadError;
 
-    const { error: insertError } = await supabaseAdmin.from('solicitudes_socio').insert({
+    const { data: inserted, error: insertError } = await supabaseAdmin.from('solicitudes_socio').insert({
       first_name: data.firstName,
       last_name: data.lastName,
       document_type: data.documentType,
@@ -62,28 +66,47 @@ export async function POST(request: NextRequest) {
       referrer_member_number: data.referrerMemberNumber || null,
       photo_url: photoPath,
       accepts_statutes: data.acceptsStatutes === 'on',
-    });
+    }).select('id, confirmation_token').single();
 
-    if (insertError) throw insertError;
+    if (insertError) {
+      // La foto ya se subió al bucket antes del insert (necesitamos el path
+      // final antes de poder insertar la fila) — si el insert falla, hay que
+      // borrarla para no dejar archivos huérfanos en Storage.
+      await supabaseAdmin.storage.from(PHOTO_BUCKET).remove([photoPath]);
+      throw insertError;
+    }
 
     await sendNotificationEmail(
       'Nueva solicitud de asociación',
-      `Nombre: ${data.firstName} ${data.lastName}\nDocumento: ${data.documentType || ''} ${data.documentNumber}\nEmail: ${data.email}\nTeléfono: ${data.mobilePhone || data.phone || ''}\n\nLa categoría de socio y el número de socio se completan manualmente por la institución (ver PROJECT_SPEC.md §8.2b).`
+      `Nombre: ${data.firstName} ${data.lastName}\nDocumento: ${data.documentType || ''} ${data.documentNumber}\nEmail: ${data.email}\nTeléfono: ${data.mobilePhone || data.phone || ''}\n\nLa categoría de socio y el número de socio se completan manualmente por la institución (ver PROJECT_SPEC.md §8.2b). La solicitud queda "sujeta a verificación de identidad" hasta que el solicitante confirme por mail o WhatsApp (ver PROJECT_SPEC.md §8.2c).`
     );
-    // [PENDIENTE: Verificación de identidad contra RENAPER (reconocimiento facial) con la foto
-    // capturada, que sustituye a la firma del solicitante. Requiere convenio/acceso oficial a la
-    // API de RENAPER — no implementado hasta contar con esas credenciales.]
-    // [PENDIENTE: Si se indicó un socio que presenta (referrerName/referrerMemberNumber), buscar
-    // el contacto real de ese socio (por número de socio, no el que tipee el solicitante) y
-    // enviarle un mail o WhatsApp solicitando que avale la presentación. Requiere (1) una base de
-    // socios con contacto real, que todavía no existe, y (2) un servicio de email o WhatsApp
-    // Business API contratado — decisiones a confirmar antes de implementar esto.]
+
+    // Confirmación funcional de identidad (sustituye a la firma manuscrita de
+    // la solicitud impresa — ver PROJECT_SPEC.md §8.2c). No es verificación
+    // biométrica/legal: confirma que quien completó el formulario controla el
+    // mail o el WhatsApp indicado.
+    const confirmUrl = `${BASE_URL}/asociate/confirmar?token=${inserted.confirmation_token}`;
+    await sendApplicantConfirmationEmail(data.email, confirmUrl);
+
+    const code = inserted.id.slice(0, 8);
+    const whatsappMessage = getMembershipFormContent().confirmWhatsappMessageTemplate.replace(
+      '{code}',
+      code
+    );
+    const whatsappConfirmUrl = whatsappHref(getSiteConfig().whatsapp, whatsappMessage);
+
+    // [PENDIENTE: Si se indicó un socio que presenta (referrerName/referrerMemberNumber), que ese
+    // socio confirme que conoce y avala al solicitante sería confirmación suficiente por sí sola.
+    // No implementado: requiere un padrón de socios con contacto real (cada asociación deberá
+    // cargar el suyo para poder usar el sistema), que todavía no existe en este repo — es
+    // funcionalidad de Fase 2 / Portal (ver PROJECT_SPEC.md §4.6, Hito b).]
 
     return NextResponse.json(
-      { success: true, message: 'Solicitud recibida correctamente' },
+      { success: true, message: 'Solicitud recibida correctamente', whatsappConfirmUrl },
       { status: 200 }
     );
   } catch (error) {
+    console.error('POST /api/membership failed:', error);
     return NextResponse.json(
       { error: 'Error al procesar tu solicitud' },
       { status: 500 }

@@ -378,6 +378,16 @@ Para la ejecución de la confluencia, se dividen las responsabilidades técnicas
 2.  **Desarrollo Independiente de Exclusiones (Ámbito Interno):** El equipo de `centro-virtual` mantiene plena autonomía para programar de forma interna sus módulos de *comunidad interna/foro, streaming institucional propio, y gamificación cultural de su incumbencia*. El *Mapa de Centros Gallegos* (y cualquier red intersocietaria) queda estrictamente bajo control y desarrollo del portal.
 3.  **Válvula de Escape:** En caso de demoras en la plataforma global para los servicios del Hito (b) acotado, implementar soluciones locales temporales encapsuladas detrás de feature flags para no bloquear su salida a producción.
 
+### 11.3 Confirmación funcional de identidad del solicitante de asociación (implementado en `centro-virtual`, 2026-07-03)
+
+Nota para cuando se ejecute la migración del Hito (a): la solicitud de asociación de `centro-virtual` (tabla propia `solicitudes_socio`, todavía no migrada a `asociaciones_*`) incorpora una confirmación de identidad **funcional, no legal ni biométrica**, pensada como sustituto de la firma manuscrita de la solicitud impresa mientras no exista panel/CMS del portal para procesarla en papel:
+
+- Se descartó comparar biométricamente la foto del wizard contra la foto del DNI: el documento suele tener años/décadas de antigüedad y el envejecimiento del rostro genera falsos negativos no relacionados con fraude. También se descartó RENAPER (requiere convenio oficial no disponible).
+- En su lugar, el solicitante confirma por mail (link con token, automático) y/o por WhatsApp (mensaje prellenado a la institución, marcado manual). Cualquiera de los dos alcanza.
+- Mientras no haya confirmación, la solicitud queda con `confirmed_at = null` — la leyenda "sujeta a verificación de identidad" debe reflejarse en el futuro panel/CMS del portal (11.1, Hito a, punto 3) cuando la comisión directiva la revise, no solo en la base de datos.
+- Queda pendiente y bloqueada la confirmación alternativa por parte del socio que presenta/avala al solicitante (el "referente"): requiere un padrón de socios con contacto real, que es responsabilidad del Hito (b) (autenticación de socios, punto 11.1). Cuando ese padrón exista, sería deseable que el portal permita que el referente confirme "conozco y avalo a esta persona" como alternativa suficiente a la confirmación por mail/WhatsApp.
+- Detalle técnico completo en `doc/PROJECT_SPEC.md` §8.2c.
+
 ---
 
 ## 12. Observaciones de `centro-virtual` sobre la sección 10-11 (ronda de seguimiento)

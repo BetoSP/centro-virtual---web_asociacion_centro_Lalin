@@ -51,6 +51,8 @@ export const membershipFormContent: MembershipFormContent = {
   photoCaptureLabel: 'Capturar',
   photoRetakeLabel: 'Volver a tomar',
   photoRequiredMessage: 'Sacate una foto con la cámara para poder enviar la solicitud.',
+  photoCameraErrorMessage:
+    'No pudimos acceder a la cámara. Revisá los permisos del navegador e intentá de nuevo.',
   documentTypeOptions: ['DNI', 'LC', 'LE', 'CI', 'Pasaporte'],
   maritalStatusOptions: ['Soltero/a', 'Casado/a', 'Divorciado/a', 'Viudo/a'],
   galicianOriginOptions: ['Nativo', 'Hijo', 'Nieto', 'No aplica'],
@@ -61,4 +63,8 @@ export const membershipFormContent: MembershipFormContent = {
   successMessage:
     '¡Gracias! Recibimos tu solicitud. La Comisión Directiva se comunicará para continuar con el trámite.',
   errorMessage: 'Hubo un error al enviar tu solicitud. Intentá nuevamente.',
+  confirmEmailSentMessage:
+    'Te enviamos un mail para confirmar tu identidad: hacé clic en el link cuando lo recibas. Mientras tanto, o si preferís, también podés confirmar por WhatsApp.',
+  confirmWhatsappLabel: 'Confirmar por WhatsApp',
+  confirmWhatsappMessageTemplate: 'Confirmo mi solicitud de asociación — código: {code}',
 };

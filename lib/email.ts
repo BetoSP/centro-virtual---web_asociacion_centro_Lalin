@@ -22,3 +22,23 @@ export async function sendNotificationEmail(subject: string, text: string) {
     console.error('Error al enviar email de notificación:', error);
   }
 }
+
+// Confirmación funcional de identidad del solicitante (ver PROJECT_SPEC.md
+// §8.2c): sustituye a la firma manuscrita de la solicitud impresa. A
+// diferencia de sendNotificationEmail (que avisa a la institución), este
+// mail va al propio solicitante — best-effort, mismo criterio de no romper
+// el flujo del formulario si no está configurado o falla el envío.
+export async function sendApplicantConfirmationEmail(to: string, confirmUrl: string) {
+  if (!resend) return;
+
+  try {
+    await resend.emails.send({
+      from: FROM,
+      to,
+      subject: 'Confirmá tu solicitud de asociación',
+      text: `Para confirmar tu solicitud de asociación, ingresá a este link:\n\n${confirmUrl}\n\nSi no hiciste esta solicitud, podés ignorar este mensaje.`,
+    });
+  } catch (error) {
+    console.error('Error al enviar email de confirmación al solicitante:', error);
+  }
+}

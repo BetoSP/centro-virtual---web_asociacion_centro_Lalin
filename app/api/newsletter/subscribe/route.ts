@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
+    console.error('POST /api/newsletter/subscribe failed:', error);
     return NextResponse.json(
       { error: 'Error al procesar tu solicitud' },
       { status: 500 }

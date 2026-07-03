@@ -9,6 +9,8 @@ import type { MembershipFormContent } from '@/types/content';
 export default function PhotoCapture({ content }: { content: MembershipFormContent }) {
   const [photo, setPhoto] = useState<string | null>(null);
   const [cameraOpen, setCameraOpen] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+  const [cameraError, setCameraError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
@@ -16,15 +18,18 @@ export default function PhotoCapture({ content }: { content: MembershipFormConte
     streamRef.current?.getTracks().forEach((track) => track.stop());
     streamRef.current = null;
     setCameraOpen(false);
+    setVideoReady(false);
   };
 
   const openCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       streamRef.current = stream;
+      setCameraError(false);
       setCameraOpen(true);
     } catch {
       setCameraOpen(false);
+      setCameraError(true);
     }
   };
 
@@ -40,7 +45,10 @@ export default function PhotoCapture({ content }: { content: MembershipFormConte
 
   const capturePhoto = () => {
     const video = videoRef.current;
-    if (!video) return;
+    // videoWidth/videoHeight quedan en 0 hasta que el <video> cargó sus
+    // metadatos (evento loadedmetadata, ver videoReady más abajo); capturar
+    // antes produciría una foto en blanco que igual pasaría la validación.
+    if (!video || video.videoWidth === 0 || video.videoHeight === 0) return;
 
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
@@ -65,11 +73,18 @@ export default function PhotoCapture({ content }: { content: MembershipFormConte
 
       {cameraOpen && (
         <div className="mb-3 space-y-3">
-          <video ref={videoRef} className="w-full max-w-xs rounded-md border border-line" muted playsInline />
+          <video
+            ref={videoRef}
+            className="w-full max-w-xs rounded-md border border-line"
+            muted
+            playsInline
+            onLoadedMetadata={() => setVideoReady(true)}
+          />
           <button
             type="button"
             onClick={capturePhoto}
-            className="rounded-md bg-black text-white px-4 py-2 text-sm font-bold shadow-sm hover:bg-atlantic transition-colors"
+            disabled={!videoReady}
+            className="rounded-md bg-black text-white px-4 py-2 text-sm font-bold shadow-sm hover:bg-atlantic transition-colors disabled:opacity-60"
           >
             {content.photoCaptureLabel}
           </button>
@@ -85,6 +100,8 @@ export default function PhotoCapture({ content }: { content: MembershipFormConte
           {photo ? content.photoRetakeLabel : content.photoCameraLabel}
         </button>
       )}
+
+      {cameraError && <p className="text-sm text-red-600 mt-2">{content.photoCameraErrorMessage}</p>}
     </div>
   );
 }

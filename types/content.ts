@@ -251,6 +251,7 @@ export interface MembershipFormContent {
   photoCaptureLabel: string;
   photoRetakeLabel: string;
   photoRequiredMessage: string;
+  photoCameraErrorMessage: string;
   documentTypeOptions: string[];
   maritalStatusOptions: string[];
   galicianOriginOptions: string[];
@@ -259,6 +260,9 @@ export interface MembershipFormContent {
   submitLoadingLabel: string;
   successMessage: string;
   errorMessage: string;
+  confirmEmailSentMessage: string;
+  confirmWhatsappLabel: string;
+  confirmWhatsappMessageTemplate: string;
 }
 
 export interface FeaturedMilestoneContent {

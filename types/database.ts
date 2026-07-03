@@ -67,6 +67,11 @@ export interface SolicitudAsociacion {
   member_category: string | null;
   member_number: string | null;
   estado: 'pendiente' | 'aprobado' | 'rechazado';
+  // Confirmación funcional de identidad (ver PROJECT_SPEC.md §8.2c) —
+  // sustituye a la firma manuscrita de la solicitud impresa
+  confirmation_token: string;
+  confirmed_at: string | null;
+  confirmation_method: 'email' | 'whatsapp' | null;
   created_at: string;
 }
 

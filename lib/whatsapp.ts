@@ -1,4 +1,5 @@
-export function whatsappHref(rawNumber: string): string | null {
+export function whatsappHref(rawNumber: string, text?: string): string | null {
   const digits = rawNumber.replace(/[^0-9]/g, '');
-  return digits.length > 0 ? `https://wa.me/${digits}` : null;
+  if (digits.length === 0) return null;
+  return text ? `https://wa.me/${digits}?text=${encodeURIComponent(text)}` : `https://wa.me/${digits}`;
 }

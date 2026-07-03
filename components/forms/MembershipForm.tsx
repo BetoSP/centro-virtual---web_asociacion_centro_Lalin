@@ -12,6 +12,7 @@ const STEP_KEYS = ['personal', 'address', 'nationality', 'confirmation'] as cons
 
 export default function MembershipForm({ content }: { content: MembershipFormContent }) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [whatsappConfirmUrl, setWhatsappConfirmUrl] = useState<string | null>(null);
   const [photoError, setPhotoError] = useState(false);
   const [step, setStep] = useState(0);
   const [spanishRegistration, setSpanishRegistration] = useState<'Sí' | 'No' | ''>('');
@@ -66,6 +67,8 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
       });
 
       if (response.ok) {
+        const result = await response.json();
+        setWhatsappConfirmUrl(result.whatsappConfirmUrl ?? null);
         setStatus('success');
         form.reset();
         setSpanishRegistration('');
@@ -330,7 +333,22 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
         )}
       </div>
 
-      {status === 'success' && <p className="text-sm text-green">{content.successMessage}</p>}
+      {status === 'success' && (
+        <div className="space-y-4">
+          <p className="text-sm text-green">{content.successMessage}</p>
+          <p className="text-sm text-granite">{content.confirmEmailSentMessage}</p>
+          {whatsappConfirmUrl && (
+            <a
+              href={whatsappConfirmUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-btn bg-gold-2 text-black px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors"
+            >
+              {content.confirmWhatsappLabel}
+            </a>
+          )}
+        </div>
+      )}
       {status === 'error' && <p className="text-sm text-red-600">{content.errorMessage}</p>}
     </form>
   );
