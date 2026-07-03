@@ -42,3 +42,6 @@ next-env.d.ts
 
 # archivos pesados excluidos del repo (superan el límite de 100MB de GitHub sin Git LFS)
 doc/Revisión 2 del proyecto/*.mp4
+
+# carpeta local con credenciales, nunca versionar
+No commitear/
