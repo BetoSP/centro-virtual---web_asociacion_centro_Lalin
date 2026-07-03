@@ -2,6 +2,8 @@
 
 Plataforma digital para el Centro Social, Cultural y Recreativo de la colectividad gallega en Argentina (Lalín, Agolada y Silleda).
 
+Repositorio: [github.com/BetoSP/centro-virtual---web_asociacion_centro_Lalin](https://github.com/BetoSP/centro-virtual---web_asociacion_centro_Lalin)
+
 ## 🚀 Inicio rápido
 
 ### Requisitos
@@ -10,7 +12,8 @@ Plataforma digital para el Centro Social, Cultural y Recreativo de la colectivid
 
 ### Instalación
 ```bash
-cd centro-virtual
+git clone https://github.com/BetoSP/centro-virtual---web_asociacion_centro_Lalin.git
+cd centro-virtual---web_asociacion_centro_Lalin
 npm install
 ```
 
@@ -38,9 +41,11 @@ app/
 ├── asociate/
 │   └── page.tsx                  # Formulario de solicitud de socio
 ├── actividades/
-│   └── page.tsx                  # Listado completo de actividades, filtrable
+│   ├── page.tsx                  # Listado completo de actividades, filtrable
+│   └── [id]/page.tsx             # Detalle de actividad (SSG con generateStaticParams)
 ├── novedades/
-│   └── page.tsx                  # Listado completo de novedades
+│   ├── page.tsx                  # Listado completo de novedades
+│   └── [id]/page.tsx             # Detalle de novedad (SSG con generateStaticParams)
 ├── historia/
 │   └── page.tsx                  # Timeline histórico
 ├── galeria/
@@ -73,11 +78,20 @@ components/
 ├── forms/
 │   ├── MembershipForm.tsx        # Formulario de solicitud de socio
 │   ├── ContactForm.tsx           # Formulario de contacto
+│   ├── NewsletterMiniForm.tsx    # Suscripción a novedades (footer/home)
 │   └── PhotoCapture.tsx          # Captura de foto por cámara (sustituye la firma)
 └── ui/
     ├── Avatar.tsx                 # Avatar por género, reemplazable por foto real
+    ├── BackLink.tsx               # Link "Volver" en páginas de detalle
     ├── Eyebrow.tsx
-    └── SectionDivider.tsx
+    ├── SectionDivider.tsx         # Divisor de secciones (silueta de costa)
+    ├── SocialIcons.tsx
+    └── WhatsAppButton.tsx         # Botón flotante fixed bottom-right, en toda la app
+
+lib/                               # Lógica compartida, no ligada a la UI
+├── microsite-data.ts             # Adaptador de datos: única puerta de entrada al contenido
+│                                  # (content/*.ts hoy, Supabase a futuro — ver doc/PLAN_INTEGRACION_SUPABASE.md)
+└── whatsapp.ts                    # Helper para armar links de WhatsApp
 
 content/                          # Datos y textos (separados de los componentes)
 ├── site.config.ts                # Datos de contacto/redes del Centro
@@ -91,13 +105,16 @@ content/                          # Datos y textos (separados de los componentes
 └── contactPage.ts                # Contenido de /contacto (incluye embed de mapa)
 
 types/
-└── content.ts                    # Interfaces TypeScript de todo el contenido
+├── content.ts                    # Interfaces TypeScript de todo el contenido
+└── database.ts                   # Borrador de esquema Supabase (Fase 1, aún no conectado)
 
 public/
 └── imagenes/                     # Assets (imágenes del Centro)
 
 tailwind.config.ts                # Configuración de Tailwind
 ```
+
+> Ningún componente ni página debe importar `content/*.ts` directamente — todo pasa por `lib/microsite-data.ts`. Ver `doc/PLAN_INTEGRACION_SUPABASE.md` (Fase 0.c).
 
 ## 🎨 Paleta de colores
 
@@ -149,7 +166,7 @@ Basada en el design system del MVP (`mvp_sitio_centro_gallego.html`):
 - [ ] Verificación de identidad contra RENAPER (requiere convenio oficial)
 
 ### Admin & CMS
-- [ ] Panel de administración básico (`/admin`) — Fase 2, no iniciar sin confirmación
+- [ ] Panel de administración (`/admin`) — **gap detectado, no construido todavía**: PROJECT_SPEC.md §3.3/§3.6 lo exige como criterio de aceptación de Fase 1, pero requiere su propio ciclo de definición (CMS headless vs. panel a medida, autenticación) antes de escribir código. Ver `doc/PROJECT_SPEC.md` §8.2b.
 - [ ] Autenticación para comisión directiva
 - [ ] Carga de nombres reales de la Comisión Directiva (actualmente con placeholders `[PENDIENTE]`)
 
@@ -169,6 +186,8 @@ Basada en el design system del MVP (`mvp_sitio_centro_gallego.html`):
 
 Ver archivos en `/doc`:
 - `PROJECT_SPEC.md` — Especificación funcional y técnica completa
+- `PLAN_INTEGRACION_SUPABASE.md` — Plan de integración con el Portal Galicia Migrante (proyecto hermano, mismo dueño)
+- `GUIA_INTEGRACION_MICROSITIOS.md` — Guía técnica del Portal para micrositios asociados
 - `mvp_sitio_centro_gallego.html` — Referencia visual y design system
 - `CLAUDE.md` — Reglas de trabajo del proyecto
 
@@ -187,10 +206,3 @@ Ver archivos en `/doc`:
 ## 📝 Licencia
 
 Proyecto privado — Centro Social, Cultural y Recreativo, Colectividad Gallega.
-
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
