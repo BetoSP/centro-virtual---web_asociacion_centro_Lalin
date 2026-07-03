@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 interface NewsletterMiniFormContent {
   emailLabel: string;
@@ -20,6 +20,7 @@ export default function NewsletterMiniForm({
 }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const inputId = useId();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,11 +49,11 @@ export default function NewsletterMiniForm({
   return (
     <div className={className}>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-        <label htmlFor="newsletter-email" className="sr-only">
+        <label htmlFor={inputId} className="sr-only">
           {content.emailLabel}
         </label>
         <input
-          id="newsletter-email"
+          id={inputId}
           type="email"
           placeholder={content.emailPlaceholder}
           value={email}

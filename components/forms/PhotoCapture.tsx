@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { MembershipFormContent } from '@/types/content';
 
 // La foto debe tomarse en el momento (no subirse desde galería): además de
@@ -23,14 +23,20 @@ export default function PhotoCapture({ content }: { content: MembershipFormConte
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       streamRef.current = stream;
       setCameraOpen(true);
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
     } catch {
       setCameraOpen(false);
     }
   };
+
+  // El <video> solo se monta cuando cameraOpen pasa a true (render condicional
+  // más abajo), así que videoRef.current todavía es null en openCamera(): el
+  // stream se asigna acá, después de que el elemento ya existe en el DOM.
+  useEffect(() => {
+    if (cameraOpen && videoRef.current && streamRef.current) {
+      videoRef.current.srcObject = streamRef.current;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [cameraOpen]);
 
   const capturePhoto = () => {
     const video = videoRef.current;

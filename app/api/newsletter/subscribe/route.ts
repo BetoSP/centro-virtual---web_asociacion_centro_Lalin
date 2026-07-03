@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,9 +12,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // [PENDIENTE: Integración con Supabase para guardar suscriptor]
-    // Por ahora retorna success como placeholder
-    
+    const { error } = await supabaseAdmin
+      .from('suscriptores_newsletter')
+      .upsert({ email, activo: true }, { onConflict: 'email' });
+
+    if (error) throw error;
+
     return NextResponse.json(
       { success: true, message: 'Te has suscrito correctamente' },
       { status: 200 }

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,9 +9,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Faltan datos obligatorios' }, { status: 400 });
     }
 
-    // [PENDIENTE: Integración con Supabase/servicio de email para guardar y notificar este
-    // mensaje de contacto a la institución. Requiere decisión de base de datos/email — con costo.]
-    console.log('Nuevo mensaje de contacto:', { name, email, message });
+    const { error } = await supabaseAdmin
+      .from('mensajes_contacto')
+      .insert({ nombre: name, email, mensaje: message });
+
+    if (error) throw error;
+
+    // [PENDIENTE: notificación por email a la institución (Resend) — decisión de costo/cuenta
+    // separada a confirmar antes de activarla]
 
     return NextResponse.json({ success: true, message: 'Mensaje recibido correctamente' }, { status: 200 });
   } catch (error) {

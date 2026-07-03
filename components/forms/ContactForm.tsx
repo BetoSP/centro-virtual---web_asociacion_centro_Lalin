@@ -12,7 +12,8 @@ export default function ContactForm({ content }: { content: ContactPageContent }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     setStatus('loading');
 
@@ -24,7 +25,7 @@ export default function ContactForm({ content }: { content: ContactPageContent }
       });
       if (response.ok) {
         setStatus('success');
-        e.currentTarget.reset();
+        form.reset();
       } else {
         setStatus('error');
       }

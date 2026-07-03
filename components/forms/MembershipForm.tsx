@@ -17,13 +17,22 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
   const [spanishRegistration, setSpanishRegistration] = useState<'Sí' | 'No' | ''>('');
   const [acceptsStatutes, setAcceptsStatutes] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const stepRefs = useRef<(HTMLElement | null)[]>([]);
 
+  // Los 4 pasos están todos montados en el DOM (ver comentario más abajo), así que
+  // form.checkValidity() validaría también los campos required de pasos futuros
+  // todavía no completados. Se valida solo el contenedor del paso actual.
   const goNext = () => {
-    const form = formRef.current;
-    if (!form) return;
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
+    const container = stepRefs.current[step];
+    if (!container) return;
+    const controls = container.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+      'input, select, textarea'
+    );
+    for (const control of controls) {
+      if (!control.checkValidity()) {
+        control.reportValidity();
+        return;
+      }
     }
     setStep((current) => Math.min(current + 1, STEP_KEYS.length - 1));
   };
@@ -38,7 +47,8 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
       return;
     }
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     if (!data.photo) {
@@ -57,7 +67,7 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
 
       if (response.ok) {
         setStatus('success');
-        e.currentTarget.reset();
+        form.reset();
         setSpanishRegistration('');
         setAcceptsStatutes(false);
         setStep(0);
@@ -90,8 +100,11 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
         ))}
       </div>
 
-      {step === 0 && (
-        <fieldset className="space-y-6">
+      {/* Los 4 pasos permanecen montados durante todo el wizard (hidden en vez de
+          desmontarse): FormData(form) solo lee inputs presentes en el DOM al
+          momento del submit, así que desmontar pasos anteriores perdería sus
+          valores al enviar desde el último paso. */}
+      <fieldset ref={(el) => { stepRefs.current[0] = el; }} className="space-y-6" hidden={step !== 0}>
           <legend className="font-display text-xl mb-2">{content.sections.personal}</legend>
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
@@ -137,11 +150,9 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
               <input className={inputClass} id="profession" name="profession" />
             </div>
           </div>
-        </fieldset>
-      )}
+      </fieldset>
 
-      {step === 1 && (
-        <fieldset className="space-y-6">
+      <fieldset ref={(el) => { stepRefs.current[1] = el; }} className="space-y-6" hidden={step !== 1}>
           <legend className="font-display text-xl mb-2">{content.sections.address}</legend>
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
@@ -181,11 +192,9 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
               <input className={inputClass} type="email" id="email" name="email" required />
             </div>
           </div>
-        </fieldset>
-      )}
+      </fieldset>
 
-      {step === 2 && (
-        <fieldset className="space-y-6">
+      <fieldset ref={(el) => { stepRefs.current[2] = el; }} className="space-y-6" hidden={step !== 2}>
           <legend className="font-display text-xl mb-2">{content.steps.nationality}</legend>
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
@@ -238,11 +247,9 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
               </div>
             </div>
           </div>
-        </fieldset>
-      )}
+      </fieldset>
 
-      {step === 3 && (
-        <>
+      <div className="space-y-10" hidden={step !== 3}>
           <fieldset className="space-y-6">
             <legend className="font-display text-xl mb-2">{content.sections.referrer}</legend>
             <div className="grid gap-6 sm:grid-cols-2">
@@ -289,8 +296,7 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
               {content.declaration}
             </label>
           </div>
-        </>
-      )}
+      </div>
 
       <div className="flex items-center gap-4 pt-4">
         {step > 0 && (
