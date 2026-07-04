@@ -23,7 +23,6 @@ export interface SiteConfig {
   infoEmail: string;
   whatsapp: string;
   address: string;
-  attentionHours: string;
   foundingYear: number | null;
   socials: SocialLink[];
   portalStrip: PortalStripContent;
@@ -167,7 +166,6 @@ export interface ContactContent {
   sideDescription: string;
   emailLabel: string;
   whatsappLabel: string;
-  attentionHoursLabel: string;
   addressLabel: string;
 }
 
@@ -289,6 +287,7 @@ export interface BoardTeaserContent {
   eyebrow: string;
   title: string;
   text: string;
+  photo: string;
   linkLabel: string;
   linkHref: string;
 }

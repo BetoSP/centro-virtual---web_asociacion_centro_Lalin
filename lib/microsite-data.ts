@@ -19,6 +19,7 @@ import type {
   GalleryContent,
   ContactPageContent,
   MembershipFormContent,
+  BoardContent,
 } from '@/types/content';
 
 /**
@@ -85,4 +86,8 @@ export function getContactPageContent(): ContactPageContent {
 
 export function getMembershipFormContent(): MembershipFormContent {
   return membershipFormContent;
+}
+
+export function getBoardContent(): BoardContent {
+  return homeContent.board;
 }

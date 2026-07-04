@@ -1,5 +1,6 @@
 import Eyebrow from '@/components/ui/Eyebrow';
 import Avatar from '@/components/ui/Avatar';
+import BackLink from '@/components/ui/BackLink';
 import type { BoardMember, BoardContent } from '@/types/content';
 
 function MemberRow({ member, avatarBg }: { member: BoardMember; avatarBg?: string }) {
@@ -61,11 +62,14 @@ export default function Board({ content }: { content: BoardContent }) {
   const directiva = [...leadership, ...vocalesTitulares, ...vocalesSuplentes];
 
   return (
-    <section id="comision-directiva" className="py-20 md:py-28 bg-paper-2">
-      <div className="max-w-container mx-auto px-7">
-        <Eyebrow>{content.eyebrow}</Eyebrow>
-        <h2 className="font-display text-3xl md:text-4xl mb-2">{content.title}</h2>
-        <p className="text-granite leading-7 max-w-2xl mb-10">{content.directivaSubtitle}</p>
+    <section id="comision-directiva">
+      <div className="max-w-container mx-auto px-7 py-20 md:py-28 border-t border-line">
+        <BackLink label="← Volver al inicio" fallbackHref="/" />
+        <div className="max-w-2xl mb-10">
+          <Eyebrow>{content.eyebrow}</Eyebrow>
+          <h2 className="font-display text-3xl md:text-4xl mb-2">{content.title}</h2>
+          <p className="text-granite leading-7">{content.directivaSubtitle}</p>
+        </div>
 
         <BoardGrid members={directiva} avatarBg="#0E2A38" />
 

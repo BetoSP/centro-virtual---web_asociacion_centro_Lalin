@@ -9,7 +9,6 @@ import ComarcaNews from '@/components/sections/ComarcaNews';
 import News from '@/components/sections/News';
 import JoinUs from '@/components/sections/JoinUs';
 import BoardTeaser from '@/components/sections/BoardTeaser';
-import Board from '@/components/sections/Board';
 import Contact from '@/components/sections/Contact';
 import { getHomeContent } from '@/lib/microsite-data';
 
@@ -27,9 +26,8 @@ export default function Home() {
       <Activities content={homeContent.activities} />
       <ComarcaNews content={homeContent.comarcaNews} />
       <News content={homeContent.news} />
-      <JoinUs content={homeContent.joinUs} />
       <BoardTeaser content={homeContent.boardTeaser} />
-      <Board content={homeContent.board} />
+      <JoinUs content={homeContent.joinUs} />
       <Contact content={homeContent.contact} />
       <Footer />
     </>

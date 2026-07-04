@@ -10,7 +10,6 @@ export const contactPageContent: ContactPageContent = {
   sideDescription: 'Mandanos un mensaje con tu consulta y te responderemos lo antes posible.',
   emailLabel: 'Email',
   whatsappLabel: 'WhatsApp',
-  attentionHoursLabel: 'Horario de atención',
   addressLabel: 'Dirección',
   mapEmbedSrc: `https://maps.google.com/maps?q=${encodeURIComponent(siteConfig.address)}&output=embed`,
   form: {

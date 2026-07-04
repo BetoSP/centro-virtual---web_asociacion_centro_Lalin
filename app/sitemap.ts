@@ -4,7 +4,7 @@ import { getActivityItems, getNewsItemsFull } from '@/lib/microsite-data';
 // [PENDIENTE: dominio real — hoy se usa NEXT_PUBLIC_SITE_URL o un placeholder hasta contratar]
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://centro-lalin-agolada-silleda.example';
 
-const routes = ['', '/historia', '/actividades', '/novedades', '/galeria', '/asociate', '/contacto'];
+const routes = ['', '/historia', '/actividades', '/novedades', '/galeria', '/directiva', '/asociate', '/contacto'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = routes.map((route) => ({

@@ -46,7 +46,7 @@ export const activityItems: ActivitiesPageContent['items'] = [
 const typeLabels: Record<ActivityType, string> = {
   danza: 'Danza',
   gaita: 'Coro y música',
-  idioma: 'Idioma',
+  idioma: 'Subcomisión de Cultura',
   gastronomia: 'Gastronomía',
   charla: 'Charlas',
   otro: 'Otras',

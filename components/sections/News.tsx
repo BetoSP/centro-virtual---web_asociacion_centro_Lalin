@@ -1,14 +1,16 @@
 import Link from 'next/link';
 import Eyebrow from '@/components/ui/Eyebrow';
+import BackLink from '@/components/ui/BackLink';
 import type { NewsContent } from '@/types/content';
 
 export default function News({ content }: { content: NewsContent }) {
   return (
-    <section id="novedades" className="py-20 md:py-28 bg-paper-2">
-      <div className="max-w-container mx-auto px-7">
+    <section id="novedades">
+      <div className="max-w-container mx-auto px-7 py-20 md:py-28 border-t border-line">
+        <BackLink label="← Volver al inicio" fallbackHref="#inicio" />
         <div className="max-w-2xl mb-12">
           <Eyebrow>{content.eyebrow}</Eyebrow>
-          <h2 className="font-display text-3xl md:text-4xl mb-4">{content.title}</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-4 text-gold">{content.title}</h2>
           <p className="text-granite leading-7">{content.description}</p>
         </div>
 
@@ -19,7 +21,7 @@ export default function News({ content }: { content: NewsContent }) {
                 <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold mb-3">
                   {news.date}
                 </p>
-                <h3 className="font-display text-xl mb-3 group-hover:text-gold transition-colors">
+                <h3 className="font-display text-xl mb-3 text-gold group-hover:text-atlantic transition-colors">
                   {news.title}
                 </h3>
                 <p className="text-sm text-granite leading-6">{news.excerpt}</p>

@@ -41,12 +41,6 @@ export default function ContactPage({ content }: { content: ContactPageContent }
               </div>
               <div className="border-t border-line pt-4">
                 <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-gold mb-2">
-                  {content.attentionHoursLabel}
-                </p>
-                <p className="text-sm text-ink">{siteConfig.attentionHours}</p>
-              </div>
-              <div className="border-t border-line pt-4">
-                <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-gold mb-2">
                   {content.addressLabel}
                 </p>
                 <p className="text-sm text-ink">{siteConfig.address}</p>

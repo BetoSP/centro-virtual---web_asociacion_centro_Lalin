@@ -14,9 +14,11 @@ interface NewsletterMiniFormContent {
 export default function NewsletterMiniForm({
   content,
   className = '',
+  dark = true,
 }: {
   content: NewsletterMiniFormContent;
   className?: string;
+  dark?: boolean;
 }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -59,7 +61,7 @@ export default function NewsletterMiniForm({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="flex-1 rounded-btn border border-transparent bg-white px-4 py-3 text-sm text-ink placeholder-granite outline-none transition-colors focus:border-gold"
+          className="flex-1 min-w-0 rounded-btn border border-transparent bg-white px-4 py-3 text-sm text-ink placeholder-granite outline-none transition-colors focus:border-gold"
         />
         <button
           type="submit"
@@ -69,7 +71,9 @@ export default function NewsletterMiniForm({
           {status === 'loading' ? content.submitLoadingLabel : content.submitLabel}
         </button>
       </form>
-      {status === 'success' && <p className="text-sm text-white mt-3">{content.successMessage}</p>}
+      {status === 'success' && (
+        <p className={`text-sm mt-3 ${dark ? 'text-white' : 'text-ink'}`}>{content.successMessage}</p>
+      )}
       {status === 'error' && <p className="text-sm text-gold mt-3">{content.errorMessage}</p>}
     </div>
   );

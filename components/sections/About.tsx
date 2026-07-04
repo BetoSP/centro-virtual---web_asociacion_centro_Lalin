@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Eyebrow from '@/components/ui/Eyebrow';
+import BackLink from '@/components/ui/BackLink';
 import type { AboutContent } from '@/types/content';
 
 export default function About({ content }: { content: AboutContent }) {
   return (
     <section id="historia" className="py-20 md:py-28">
       <div className="max-w-container mx-auto px-7">
+        <BackLink label="← Volver al inicio" fallbackHref="#inicio" />
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center mb-14">
           <div>
             <Eyebrow>{content.eyebrow}</Eyebrow>
@@ -28,15 +30,12 @@ export default function About({ content }: { content: AboutContent }) {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-3">
-          {content.features.map((item, index) => (
+          {content.features.map((item) => (
             <div
               key={item.title}
               className="bg-white rounded-xl border border-line p-6 shadow-sm hover:shadow-md transition-shadow"
             >
-              <span className="font-mono text-sm font-bold text-gold mb-4 block">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <h3 className="font-display text-lg mb-2">{item.title}</h3>
+              <h3 className="font-display text-lg text-gold mb-2">{item.title}</h3>
               <p className="text-sm text-granite leading-6">{item.description}</p>
             </div>
           ))}

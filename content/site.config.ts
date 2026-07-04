@@ -11,7 +11,6 @@ export const siteConfig: SiteConfig = {
   infoEmail: 'info@dezar.org',
   whatsapp: '+54 9 11 1234 5678',
   address: 'Moreno 1949, Ciudad Autónoma de Buenos Aires',
-  attentionHours: '[PENDIENTE: horario de atención real]',
   foundingYear: 1982,
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/lalinagoladasilleda' },

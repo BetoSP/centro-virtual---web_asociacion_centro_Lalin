@@ -121,8 +121,9 @@ export const homeContent: HomeContent = {
     eyebrow: 'Autoridades',
     title: 'Comisión Directiva',
     text: '24 socios elegidos por la asamblea conducen la institución.',
+    photo: '/imagenes/comision-directiva-reunion.png',
     linkLabel: 'Ver la Comisión Directiva completa →',
-    linkHref: '#comision-directiva',
+    linkHref: '/directiva',
   },
   board: {
     eyebrow: 'Autoridades',
@@ -167,7 +168,6 @@ export const homeContent: HomeContent = {
       'Mandanos un mensaje con tu consulta y te responderemos lo antes posible.',
     emailLabel: 'Email',
     whatsappLabel: 'WhatsApp',
-    attentionHoursLabel: 'Horario de atención',
     addressLabel: 'Dirección',
   },
 };

@@ -5,7 +5,7 @@ export const mainNav: NavItem[] = [
   { label: 'Actividades', href: '/actividades' },
   { label: 'Novedades', href: '/novedades' },
   { label: 'Galería', href: '/galeria' },
-  { label: 'Comisión Directiva', href: '/#comision-directiva' },
+  { label: 'Comisión Directiva', href: '/directiva' },
   { label: 'Contacto', href: '/contacto' },
   // Placeholder visual: el portal de socios (Fase 2) todavía no existe.
   { label: 'Ingresar', href: '#' },
@@ -21,7 +21,7 @@ export const footerNavSections: { title: string; links: NavItem[] }[] = [
       { label: 'Actividades', href: '/actividades' },
       { label: 'Novedades', href: '/novedades' },
       { label: 'Galería', href: '/galeria' },
-      { label: 'Comisión Directiva', href: '/#comision-directiva' },
+      { label: 'Comisión Directiva', href: '/directiva' },
       { label: 'Asociate', href: '/asociate' },
     ],
   },
