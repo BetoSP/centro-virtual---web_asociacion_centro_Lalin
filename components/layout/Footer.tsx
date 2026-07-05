@@ -79,7 +79,7 @@ export default function Footer() {
               height={20}
               className="rounded-full bg-white object-cover"
             />
-            Galicia Migrante
+            {siteConfig.portalStrip.footerText}
           </span>
           <span className="flex items-center gap-1.5 text-white/60">
             <span>by</span>

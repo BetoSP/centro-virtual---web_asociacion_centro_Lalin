@@ -21,6 +21,7 @@ Referencia visual: **`mvp_sitio_centro_gallego.html`** — paleta atlántica/oro
 - **No se declara nada "hecho"/"corregido"/"verificado" sin verificación visual real**: renderizar la página (build de producción + captura de pantalla, ej. con Playwright) y mirar el resultado antes de afirmar que algo está bien. Comparación explícita imagen contra imagen contra el prototipo/mockup de referencia, no solo lectura de código.
 - **Chequeo exhaustivo, no superficial**: antes de dar una tarea por terminada, revisar el archivo completo y sus consumidores relacionados, no solo el primer punto que confirma la hipótesis. Si algo parece raro o no cuadra con la spec, detenerse y preguntar antes de actuar — nunca tomar el atajo.
 - **Código limpio, sin parches ni hardcodeo**: nada de mockups ni valores fijos en el código. Todo contenido/parámetro debe vivir en `content/*.ts` o `types/content.ts` (arquitectura "content as data"), pensando en que a futuro un admin sin acceso al código deberá poder editarlo vía CMS.
+- **Buscamos la perfección, no parches ni código mal construido**: cuando algo se puede hacer bien y está a nuestro alcance hacerlo bien, se hace bien — no se deja pasar una construcción deficiente solo porque "funciona" o porque el costo de no arreglarla parece chico hoy.
 
 ## Comandos
 

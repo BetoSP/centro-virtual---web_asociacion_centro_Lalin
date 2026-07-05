@@ -211,6 +211,14 @@ Sustituye a la firma manuscrita de la solicitud impresa. No es verificación leg
 
 Verificado (2026-07-03): build de producción + POST real al endpoint (200 OK, `whatsappConfirmUrl` presente), página de confirmación con token válido/inválido/ausente vía Playwright, y pantalla de éxito del wizard completo (cámara fake de Chromium) mostrando el botón de WhatsApp.
 
+### 8.2d Tarjeta flotante interactiva en Historia (confirmado por el usuario 2026-07-05)
+
+`components/sections/HistoryMilestoneItem.tsx` (usado por `components/sections/HistoryTimeline.tsx`, página `/historia`) abre una tarjeta flotante con el detalle del hito al pasar el mouse o hacer click sobre su punto/título en la línea de tiempo. Este comportamiento existía en el código sin estar citado en ningún documento de spec/revisión — quedó detectado como posible iniciativa estética no autorizada durante una revisión exhaustiva de bugs (2026-07-05).
+
+**Confirmado por el usuario (2026-07-05): el comportamiento fue solicitado por él.** Se documenta acá para que quede citable a futuro, conforme a la regla de CLAUDE.md de no tomar iniciativa estética sin respaldo en la spec.
+
+Reglas de la interacción: solo un hito puede estar abierto a la vez (fijado por click o mostrado por hover); hacer click en el fondo oscurecido cierra la tarjeta; si la descripción es larga, se trunca con un botón "Leer más" que solo es interactuable/enfocable mientras la tarjeta está abierta.
+
 ### 8.3 Relacionado con Fase 2 (no implementar aún, solo a tener en cuenta al diseñar el modelo de datos de Fase 1)
 
 - La foto de verificación capturada en el wizard de asociación deberá guardarse en un campo propio en la futura base de datos de socios.

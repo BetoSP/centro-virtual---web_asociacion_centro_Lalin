@@ -66,7 +66,7 @@ export default function NewsletterMiniForm({
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="rounded-btn bg-gold-2 text-black px-6 py-3 text-sm font-bold shadow-sm hover:bg-white transition-colors disabled:opacity-60"
+          className="rounded-full bg-gold-2 text-ink px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors disabled:opacity-60 dark:bg-paper dark:text-gold-2"
         >
           {status === 'loading' ? content.submitLoadingLabel : content.submitLabel}
         </button>

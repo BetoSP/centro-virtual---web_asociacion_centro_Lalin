@@ -22,7 +22,6 @@ export const footerNavSections: { title: string; links: NavItem[] }[] = [
       { label: 'Novedades', href: '/novedades' },
       { label: 'Galería', href: '/galeria' },
       { label: 'Comisión Directiva', href: '/directiva' },
-      { label: 'Asociate', href: '/asociate' },
     ],
   },
 ];

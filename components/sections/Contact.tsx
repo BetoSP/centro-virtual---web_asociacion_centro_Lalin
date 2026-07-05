@@ -8,11 +8,11 @@ export default function Contact({ content }: { content: ContactContent }) {
 
   return (
     <section id="contacto">
-      <div className="max-w-container mx-auto px-7 py-20 md:py-28 border-t border-line">
+      <div className="max-w-container mx-auto px-7 py-20 border-t border-line">
         <BackLink label="← Volver al inicio" fallbackHref="#inicio" />
         <div>
           <Eyebrow>{content.eyebrow}</Eyebrow>
-          <h2 className="font-display text-3xl md:text-4xl mb-6 text-gold">{content.title}</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-6">{content.title}</h2>
           <p className="text-granite max-w-xl leading-8 mb-10">{content.description}</p>
           <div className="grid gap-6 sm:grid-cols-3">
             <div className="border-t border-line pt-4">

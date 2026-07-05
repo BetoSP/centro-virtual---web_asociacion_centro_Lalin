@@ -9,29 +9,21 @@ export const homeContent: HomeContent = {
       'El lugar de quienes llegaron a estas tierras desde\nsu querida comarca - de sus hijos y nietos que\nheredaron toda la morriña por la tierra do seus pais.',
     primaryCta: { label: 'Asociate al Centro', href: '/asociate' },
     secondaryCta: { label: 'Ver actividades', href: '#actividades' },
-    quickLinks: [
-      { label: 'Historia del Centro', href: '#historia' },
-      { label: 'Próximas actividades', href: '#actividades' },
-      { label: 'Novedades', href: '#novedades' },
-    ],
     slides: [
       {
         image: '/imagenes/banner.jpg',
         imageAlt: 'Banner institucional del Centro Lalín, Agolada y Silleda',
-        captionEyebrow: 'Galicia actual',
-        caption: 'Un lugar de encuentro que combina tradición, paisaje y comunidad digital.',
+        caption: 'Ríos y praderas de la comarca de Deza',
       },
       {
         image: '/imagenes/coro.jpg',
         imageAlt: 'Ensayo del Coro Lalín',
-        captionEyebrow: 'Vida del Centro',
-        caption: 'El Coro Lalín mantiene viva la música tradicional gallega en cada encuentro.',
+        caption: 'Centro Lalín, Buenos Aires',
       },
       {
         image: '/imagenes/fiesta-cocido.jpg',
         imageAlt: 'Fiesta del Cocido en el salón principal',
-        captionEyebrow: 'Encuentros',
-        caption: 'La Fiesta del Cocido reúne cada año a socios y visitantes en una jornada gastronómica.',
+        caption: 'Fiesta del Cocido, Buenos Aires',
       },
     ],
   },
@@ -62,15 +54,6 @@ export const homeContent: HomeContent = {
     image: '/imagenes/banner.jpg',
     imageAlt: 'Banner institucional del Centro Lalín, Agolada y Silleda',
     imageCaption: '[PENDIENTE: ubicación/leyenda real]',
-  },
-  featuredMilestone: {
-    year: '1981',
-    eyebrow: 'Historia · 1981–1988',
-    title: 'El asilo de la democracia',
-    paragraph:
-      'En los años de la dictadura, cuando reunirse era un riesgo, el Centro abrió sus puertas a Raúl Alfonsín —nieto de gallego— para que se encontrara con su partido en la clandestinidad. Cumplió su promesa: al asumir la presidencia, Lalín fue su primer viaje oficial al exterior. Desde el 19 de marzo de 1988, Chascomús (su ciudad natal) y Lalín son ciudades hermanas.',
-    ctaLabel: 'Conocé la historia completa →',
-    ctaHref: '/historia',
   },
   activities: {
     eyebrow: 'Agenda',

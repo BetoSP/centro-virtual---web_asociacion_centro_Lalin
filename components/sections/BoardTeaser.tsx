@@ -9,12 +9,12 @@ const CIRCLE_COLORS = ['#0E2A38', '#3F6B4A', '#B4502E', '#C9A227'];
 export default function BoardTeaser({ content }: { content: BoardTeaserContent }) {
   return (
     <section id="directiva">
-      <div className="max-w-container mx-auto px-7 py-20 md:py-28 border-t border-line">
+      <div className="max-w-container mx-auto px-7 py-20 border-t border-line">
         <BackLink label="← Volver al inicio" fallbackHref="#inicio" />
         <div className="grid gap-8 md:grid-cols-2 md:items-center">
           <div>
             <Eyebrow>{content.eyebrow}</Eyebrow>
-            <h2 className="font-display text-3xl md:text-4xl mb-6 text-atlantic">{content.title}</h2>
+            <h2 className="font-display text-3xl md:text-4xl mb-6">{content.title}</h2>
             <div className="flex items-center mb-4">
               {CIRCLE_COLORS.map((color, index) => (
                 <span

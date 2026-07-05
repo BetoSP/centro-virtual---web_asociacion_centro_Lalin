@@ -20,7 +20,7 @@ export default function ActivitiesList({
   const upcomingEvents = content.items.filter((item) => item.kind === 'evento');
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20">
       <div className="max-w-container mx-auto px-7">
         <BackLink label="← Volver al inicio" fallbackHref="/" />
         <div className="max-w-2xl mb-10">

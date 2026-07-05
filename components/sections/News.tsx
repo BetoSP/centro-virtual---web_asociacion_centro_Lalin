@@ -6,11 +6,11 @@ import type { NewsContent } from '@/types/content';
 export default function News({ content }: { content: NewsContent }) {
   return (
     <section id="novedades">
-      <div className="max-w-container mx-auto px-7 py-20 md:py-28 border-t border-line">
+      <div className="max-w-container mx-auto px-7 py-20 border-t border-line">
         <BackLink label="← Volver al inicio" fallbackHref="#inicio" />
         <div className="max-w-2xl mb-12">
           <Eyebrow>{content.eyebrow}</Eyebrow>
-          <h2 className="font-display text-3xl md:text-4xl mb-4 text-gold">{content.title}</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-4">{content.title}</h2>
           <p className="text-granite leading-7">{content.description}</p>
         </div>
 

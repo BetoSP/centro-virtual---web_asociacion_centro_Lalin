@@ -3,7 +3,6 @@ import Footer from '@/components/layout/Footer';
 import SectionDivider from '@/components/ui/SectionDivider';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
-import FeaturedMilestone from '@/components/sections/FeaturedMilestone';
 import Activities from '@/components/sections/Activities';
 import ComarcaNews from '@/components/sections/ComarcaNews';
 import News from '@/components/sections/News';
@@ -21,7 +20,6 @@ export default function Home() {
       <Hero content={homeContent.hero} />
       <SectionDivider />
       <About content={homeContent.about} />
-      <FeaturedMilestone content={homeContent.featuredMilestone} />
       <SectionDivider />
       <Activities content={homeContent.activities} />
       <ComarcaNews content={homeContent.comarcaNews} />

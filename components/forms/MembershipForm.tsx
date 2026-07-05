@@ -316,7 +316,7 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
           <button
             type="button"
             onClick={goNext}
-            className="rounded-btn bg-gold-2 text-black px-8 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors"
+            className="rounded-full bg-gold-2 text-ink px-8 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors dark:bg-paper dark:text-gold-2"
           >
             Continuar →
           </button>
@@ -342,7 +342,7 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
               href={whatsappConfirmUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-btn bg-gold-2 text-black px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors"
+              className="inline-block rounded-full bg-gold-2 text-ink px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors dark:bg-paper dark:text-gold-2"
             >
               {content.confirmWhatsappLabel}
             </a>

@@ -6,7 +6,7 @@ import type { ActivitiesContent } from '@/types/content';
 
 export default function Activities({ content }: { content: ActivitiesContent }) {
   return (
-    <section id="actividades" className="py-20 md:py-28">
+    <section id="actividades" className="py-20">
       <div className="max-w-container mx-auto px-7">
         <BackLink label="← Volver al inicio" fallbackHref="#inicio" />
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">

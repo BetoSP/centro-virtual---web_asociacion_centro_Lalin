@@ -1,13 +1,11 @@
 import Image from 'next/image';
 import Eyebrow from '@/components/ui/Eyebrow';
-import BackLink from '@/components/ui/BackLink';
 import type { AboutContent } from '@/types/content';
 
 export default function About({ content }: { content: AboutContent }) {
   return (
-    <section id="historia" className="py-20 md:py-28">
+    <section id="historia" className="py-20">
       <div className="max-w-container mx-auto px-7">
-        <BackLink label="← Volver al inicio" fallbackHref="#inicio" />
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center mb-14">
           <div>
             <Eyebrow>{content.eyebrow}</Eyebrow>

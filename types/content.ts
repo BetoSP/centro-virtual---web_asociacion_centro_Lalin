@@ -10,7 +10,7 @@ export interface SocialLink {
 
 export interface PortalStripContent {
   icon: string;
-  text: string;
+  footerText: string;
 }
 
 export interface SiteConfig {
@@ -31,7 +31,6 @@ export interface SiteConfig {
 export interface HeroSlide {
   image: string;
   imageAlt: string;
-  captionEyebrow: string;
   caption: string;
 }
 
@@ -40,7 +39,6 @@ export interface HeroContent {
   description: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
-  quickLinks: { label: string; href: string }[];
   slides: HeroSlide[];
 }
 
@@ -263,15 +261,6 @@ export interface MembershipFormContent {
   confirmWhatsappMessageTemplate: string;
 }
 
-export interface FeaturedMilestoneContent {
-  year: string;
-  eyebrow: string;
-  title: string;
-  paragraph: string;
-  ctaLabel: string;
-  ctaHref: string;
-}
-
 export interface ComarcaNewsItem {
   municipality: string;
   text: string;
@@ -295,7 +284,6 @@ export interface BoardTeaserContent {
 export interface HomeContent {
   hero: HeroContent;
   about: AboutContent;
-  featuredMilestone: FeaturedMilestoneContent;
   activities: ActivitiesContent;
   comarcaNews: ComarcaNewsContent;
   news: NewsContent;

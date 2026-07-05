@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getMainNav, getSiteConfig } from '@/lib/microsite-data';
-import PortalStrip from '@/components/layout/PortalStrip';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,12 +12,6 @@ export default function Header() {
 
   return (
     <>
-      <PortalStrip content={siteConfig.portalStrip} />
-
-      <div>
-        <div className="max-w-container mx-auto py-1 px-4 bg-header-dark" />
-      </div>
-
       <header className="sticky top-0 z-50">
         <div className="max-w-container mx-auto bg-[rgba(250,247,240,0.85)] backdrop-blur-[10px] shadow-sm">
           <div className="px-7 py-4 flex items-center justify-between gap-4">
@@ -41,7 +34,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-[12.5px] font-bold text-ink border-[1.5px] border-ink rounded-full px-4 py-[7px] bg-atlantic/10"
+                    className="text-[12.5px] font-bold rounded-full px-4 py-[7px] bg-gold-2 text-ink dark:bg-paper dark:text-gold-2"
                   >
                     {item.label}
                   </Link>
@@ -78,7 +71,7 @@ export default function Header() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="inline-block text-sm font-bold text-ink border-[1.5px] border-ink rounded-full px-4 py-[7px] bg-atlantic/10"
+                        className="inline-block text-sm font-bold rounded-full px-4 py-[7px] bg-gold-2 text-ink dark:bg-paper dark:text-gold-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.label}

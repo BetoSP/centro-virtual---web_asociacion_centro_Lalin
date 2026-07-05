@@ -18,6 +18,6 @@ export const siteConfig: SiteConfig = {
   ],
   portalStrip: {
     icon: '/imagenes/galicia-migrante-icon.png',
-    text: 'Un micrositio del portal Galicia Migrante',
+    footerText: 'Galicia Migrante — Portal de la Diáspora Gallega',
   },
 };

@@ -63,7 +63,7 @@ export default function Board({ content }: { content: BoardContent }) {
 
   return (
     <section id="comision-directiva">
-      <div className="max-w-container mx-auto px-7 py-20 md:py-28 border-t border-line">
+      <div className="max-w-container mx-auto px-7 py-20 border-t border-line">
         <BackLink label="← Volver al inicio" fallbackHref="/" />
         <div className="max-w-2xl mb-10">
           <Eyebrow>{content.eyebrow}</Eyebrow>

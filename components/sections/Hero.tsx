@@ -18,12 +18,10 @@ export default function Hero({ content }: { content: HeroContent }) {
     return () => clearInterval(timer);
   }, [content.slides.length]);
 
-  const slide = content.slides[activeSlide];
-
   return (
     <>
       <section id="inicio" className="relative">
-        <div className="relative overflow-hidden max-w-container mx-auto px-7 py-28 md:py-36">
+        <div className="relative overflow-hidden max-w-container mx-auto px-7 pt-14 pb-10">
           {content.slides.map((s, index) => (
             <Image
               key={s.image}
@@ -61,11 +59,37 @@ export default function Hero({ content }: { content: HeroContent }) {
               ))}
             </p>
 
-            <div className="mt-8 inline-flex items-center gap-4 rounded-full border border-green/40 bg-green/25 backdrop-blur-md px-5 py-3">
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-2">
-                {slide.captionEyebrow}
-              </span>
-              <span className="text-sm text-white/90">{slide.caption}</span>
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+              <div
+                className="inline-flex items-center gap-2 rounded-[20px] px-4 py-2 backdrop-blur-[8px]"
+                style={{
+                  backgroundColor: 'rgba(63,107,74,0.55)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                }}
+              >
+                <span
+                  className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
+                  style={{ backgroundColor: '#7FBE8C' }}
+                />
+                <span className="grid">
+                  {content.slides.map((s, index) => (
+                    <span
+                      key={s.image}
+                      className="[grid-area:1/1] font-mono text-[10px] uppercase tracking-[0.25em] text-white whitespace-nowrap transition-opacity duration-[1100ms]"
+                      style={{ opacity: index === activeSlide ? 1 : 0 }}
+                      aria-hidden={index !== activeSlide}
+                    >
+                      {s.caption}
+                    </span>
+                  ))}
+                </span>
+              </div>
+              <Link
+                href={content.primaryCta.href}
+                className="inline-block rounded-full bg-gold-2 text-ink px-6 py-2 text-sm font-bold hover:bg-gold transition-colors whitespace-nowrap dark:bg-paper dark:text-gold-2"
+              >
+                {content.primaryCta.label} →
+              </Link>
             </div>
 
             {content.slides.length > 1 && (
@@ -88,30 +112,6 @@ export default function Hero({ content }: { content: HeroContent }) {
           </div>
         </div>
       </section>
-
-      <div className="relative -mt-11 z-20">
-        <div className="max-w-container mx-auto px-7">
-          <div className="rounded-frame border border-white/20 bg-[rgba(8,23,32,0.62)] backdrop-blur-[16px] shadow-2xl flex flex-col md:flex-row items-stretch md:items-center justify-between text-white overflow-hidden">
-            <div className="flex flex-col md:flex-row">
-              {content.quickLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-bold px-7 py-5 border-b md:border-b-0 md:border-r border-white/25 hover:bg-white/10 transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-            <Link
-              href={content.primaryCta.href}
-              className="text-sm font-bold px-7 py-5 bg-gold-2 text-black hover:bg-white transition-colors text-center md:ml-auto"
-            >
-              Asociate al Centro →
-            </Link>
-          </div>
-        </div>
-      </div>
     </>
   );
 }
