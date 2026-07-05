@@ -21,13 +21,15 @@ La guía de integración define 4 tareas concretas para que `centro-virtual` lle
 | # | Tarea (§11.2) | Fase de este plan | Estado |
 |---|---|---|---|
 | 1 | Finalizar Fase 1 frontend (diseño visual con tipografías/paleta propias) | Confirmación en **Fase 0.a** | ✅ Hecho (2026-07-02) |
-| 2 | Aislamiento de estilos frente al portal (resuelto en §15.1: no requiere CSS Modules, Tailwind con `preflight: false` y/o clase contenedora `.lalin-theme`) | Absorbido en **Fase 0.d** | Diferido — ver nota abajo |
+| 2 | Aislamiento de estilos frente al portal (resuelto en §15.1: no requiere CSS Modules, Tailwind con `preflight: false` y/o clase contenedora `.lalin-theme`) | **Fase 0.d** | ✅ Hecho (2026-07-05) |
 | 3 | Adaptador de datos (`useMicrositioData()` / `lib/microsite-data.ts`) | **Fase 0.c** | ✅ Hecho (2026-07-02) |
-| 4 | Empaquetar y exportar la carpeta de la plantilla para el portal (`app/asociaciones/[slug]/templates/centro-lalin/`) | **Fase 0.d** | Pendiente |
+| 4 | Empaquetar y exportar la carpeta de la plantilla para el portal (`app/asociaciones/[slug]/templates/centro-lalin/`) | **Fase 0.d** | ✅ Hecho (2026-07-05) |
 
 Adicionalmente (fuera del checklist de la guía, pero necesario para producción propia de `centro-virtual`): persistencia real de formularios en un Supabase propio (**Fase 1**).
 
 > **Nota (2026-07-02) — reordenamiento de 0.b**: §15.1 de la guía dice textualmente que el aislamiento de estilos se aplica "al momento de empaquetar la plantilla para el portal". Se decidió (con el usuario) no ejecutarlo como paso previo aislado: hacerlo ahora exigiría desactivar el reset global de Tailwind en todo el sitio sin ningún beneficio inmediato (el sitio no está embebido en ningún portal todavía) y forzaría una re-verificación visual completa. Queda absorbido dentro de la Fase 0.d, en el momento real de empaquetado.
+>
+> **Nota (2026-07-05) — cierre de 0.d**: se optó por la clase contenedora `.lalin-theme` (no `preflight: false`): scopea las custom properties de color y el reset base de `app/globals.css` bajo ese selector en vez de `:root`/globales, aplicado en `app/layout.tsx`. Se descartó `preflight: false` por afectar el reset de Tailwind en todo el sitio propio sin beneficio real hoy. Verificado con build de producción + 24 capturas Playwright (12 rutas × claro/oscuro): sin cambios visuales. Detalle completo de qué se empaqueta y entrega al portal en `doc/EXPORT_PLANTILLA_CENTRO_LALIN.md`. Con esto, el Hito (a) de `centro-virtual` queda cerrado; el contenido institucional real pendiente (§8.1) y la conexión del adaptador al Supabase de producción del portal quedan a cargo del equipo de Portal Galicia Migrante.
 
 ## Fase 0 — Cierre del Hito (a) propio de `centro-virtual` (ejecutable ahora, sin costo ni decisiones pendientes)
 
@@ -36,11 +38,8 @@ Revisar `PROJECT_SPEC.md` §3 (alcance Fase 1) contra el estado actual del códi
 
 **Resultado**: las 8 secciones de §3.2 (Home, Historia, Actividades, Novedades, Galería, Asociate, Contacto, Newsletter) están maquetadas y funcionando; confirmado con build de producción + capturas Playwright de cada página. **Hallazgo aparte, ya documentado en `PROJECT_SPEC.md` §8**: el panel de administración exigido por §3.3/§3.6 no existe (`app/admin` está vacío) — no bloquea esta verificación de maquetación porque es un gap funcional, no visual, pero queda registrado como pendiente de Fase 1 a resolver antes de considerar el sitio 100% completo.
 
-### Fase 0.b — Aislamiento de estilos (resuelto en §15.1 de la guía)
-El portal confirmó que no hace falta migrar a CSS Modules: alcanza con que Tailwind no choque con el CSS del portal al importar la plantilla. Cambios necesarios:
-- En `tailwind.config.ts`, desactivar el *reset* global: `corePlugins: { preflight: false }` (o equivalente vigente en Tailwind v4).
-- Encapsular el layout raíz bajo una clase contenedora única, ej. `.lalin-theme`, en `app/layout.tsx`.
-- Verificación visual obligatoria después del cambio (el `preflight: false` puede alterar estilos base de elementos nativos como `<button>`, `<input>`, listas, etc. que hoy dependen del reset de Tailwind) — comparar contra el estado actual, no debe haber ninguna diferencia visual.
+### Fase 0.b — Aislamiento de estilos (resuelto en §15.1 de la guía) ✅ Hecho (2026-07-05), ver Fase 0.d
+El portal confirmó que no hace falta migrar a CSS Modules: alcanza con que Tailwind no choque con el CSS del portal al importar la plantilla. Se implementó como parte de la Fase 0.d (ver abajo): clase contenedora `.lalin-theme` en `app/globals.css`/`app/layout.tsx`, sin desactivar `preflight` global.
 
 ### Fase 0.c — Adaptador de datos ✅ Hecho (2026-07-02)
 Objetivo: que ningún componente importe `content/*.ts` directamente. Todos consumen los datos a través de un módulo único, hoy respaldado por los mismos archivos `content/*.ts` que ya existen (comportamiento idéntico, cero cambio visible). Cuando llegue el momento de migrar a Supabase (Hito a), el cambio se hace en un solo archivo.
@@ -68,8 +67,10 @@ Objetivo: que ningún componente importe `content/*.ts` directamente. Todos cons
 - `content/*.ts` y `types/content.ts` no se eliminan ni se reestructuran — siguen siendo la fuente de datos real de Fase 1. Este cambio es puramente de indirección.
 - Riesgo a verificar: páginas estáticas (`generateStaticParams` en `app/actividades/[id]/page.tsx` y `app/novedades/[id]/page.tsx`) deben seguir funcionando igual llamando a las nuevas funciones de búsqueda por id.
 
-### Fase 0.d — Empaquetado y entrega de la plantilla
-Una vez cerradas 0.a-0.c, preparar la carpeta de plantilla para que el portal la copie a `app/asociaciones/[slug]/templates/centro-lalin/` (§11.2.4 de la guía). Implica aislar en una carpeta propia los componentes/estilos/adaptador específicos de Centro Lalín, sin dependencias sueltas al resto del repo `centro-virtual` que el portal no tendría. El detalle exacto de qué se empaqueta se define recién en este punto, cuando 0.a-0.c estén terminados — prematuro planificarlo ahora en detalle.
+### Fase 0.d — Empaquetado y entrega de la plantilla ✅ Hecho (2026-07-05)
+Con 0.a-0.c cerradas, se implementó el aislamiento de estilos (`.lalin-theme`, absorbiendo 0.b) y se documentó el manifiesto de empaquetado en `doc/EXPORT_PLANTILLA_CENTRO_LALIN.md`: qué carpetas/archivos copiar a `app/asociaciones/[slug]/templates/centro-lalin/` (§11.2.4 de la guía), qué queda afuera (`app/api/*`, `app/admin`, `supabase/`), y qué pendientes explícitos quedan a cargo del portal (contenido institucional real, conexión del adaptador a su Supabase de producción).
+
+Cambios de código: `app/globals.css` (variables de color y reset base scopeados bajo `.lalin-theme` en vez de `:root`/selectores globales) y `app/layout.tsx` (clase `lalin-theme` en `<body>`). Verificado: `npm run build` sin errores, `npm run lint` sin errores nuevos, y comparación Playwright de 24 capturas (12 rutas × claro/oscuro, build de producción) — 23/24 archivos PNG byte-idénticos; la única diferencia (`/contacto`) se debe al timing de carga del mapa embebido (tiles de terceros), no al cambio de CSS.
 
 ## Fase 1 — Cuenta Supabase propia + persistencia de formularios (parcialmente hecha)
 

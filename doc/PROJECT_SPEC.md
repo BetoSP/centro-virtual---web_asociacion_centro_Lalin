@@ -281,7 +281,9 @@ A raíz de una consulta del usuario sobre qué recaudo legal se toma al pedir da
 
 Ver `PROJECT_SPEC.md` §4.6 y `doc/GUIA_INTEGRACION_MICROSITIOS.md` §6-14 para el detalle completo. Resumen de lo que queda pendiente de ejecutar (nada de esto está construido todavía):
 
-- Migración de `content/*.ts` a las tablas Supabase del portal (Hito a), incluyendo las 3 tablas nuevas a crear en el repo del portal (`asociaciones_actividades`, `asociaciones_galeria`, `asociaciones_hitos_historicos`).
+- Migración de `content/*.ts` a las tablas Supabase del portal (Hito a), incluyendo las 3 tablas nuevas a crear en el repo del portal (`asociaciones_actividades`, `asociaciones_galeria`, `asociaciones_hitos_historicos`). **A cargo del portal** — ver nota abajo.
 - ~~Construcción del adaptador de datos en `centro-virtual` para desacoplar los componentes visuales del origen de datos.~~ **Hecho (2026-07-02)**: `lib/microsite-data.ts`, ver §4.6 arriba.
 - Consumo de los servicios unificados del portal para auth, pagos, CMS e inscripciones (Hito b), una vez que existan.
 - Retiro definitivo de "Mapa de centros gallegos" del alcance de `centro-virtual` (queda en el portal).
+
+**Hito (a) del lado de `centro-virtual` cerrado (2026-07-05)**: las 4 tareas de `doc/GUIA_INTEGRACION_MICROSITIOS.md` §11.2 están hechas — frontend de Fase 1, aislamiento de estilos (clase `.lalin-theme` en `app/globals.css`/`app/layout.tsx`, verificado sin cambios visuales con 24 capturas Playwright), adaptador de datos, y empaquetado/entrega documentado en `doc/EXPORT_PLANTILLA_CENTRO_LALIN.md`. Bitácora de aviso al portal en `doc/GUIA_INTEGRACION_MICROSITIOS.md` §16. Por decisión del cliente (2026-07-05), el contenido institucional real pendiente (§8.1) y la conexión del adaptador al Supabase de producción del portal quedan a cargo del equipo de Portal Galicia Migrante de acá en adelante, no de `centro-virtual`.

@@ -454,3 +454,23 @@ El portal no admitirá plantillas personalizadas ilimitadas: funcionará con un 
 ### 15.4 Estado de espera
 El portal queda a la espera de que `centro-virtual` alcance el Hito (a) completo: maquetación visual finalizada + adaptador de datos (`useMicrositioData()`) conectado al Supabase de pruebas propio, para iniciar la importación del micrositio al portal.
 
+---
+
+## 16. Cierre del Hito (a) del lado de `centro-virtual` (2026-07-05)
+
+*Registrado por `centro-virtual`, notificando al equipo de Portal Galicia Migrante.*
+
+Las 4 tareas de la Sección 11.2 quedan cerradas:
+
+1. **Frontend Fase 1**: maquetación completa, verificada visualmente (build de producción + Playwright).
+2. **Aislamiento de estilos**: resuelto con la clase contenedora `.lalin-theme` (§15.1, opción de clase contenedora, sin desactivar `preflight` de Tailwind). Scopea las variables de color y el reset base de `centro-virtual` para que no colisionen con el CSS del portal al embeber la plantilla.
+3. **Adaptador de datos**: `lib/microsite-data.ts`, funciones planas (no hook, porque las páginas de `centro-virtual` son Server Components de Next.js App Router) — único punto de lectura de contenido, listo para redirigirse a Supabase sin tocar componentes consumidores.
+4. **Empaquetado y entrega**: manifiesto completo en `doc/EXPORT_PLANTILLA_CENTRO_LALIN.md` (qué copiar, qué no, y cómo aplicar `.lalin-theme` al integrar).
+
+**Queda explícitamente a cargo del Portal de acá en adelante** (confirmado por el cliente de `centro-virtual`, 2026-07-05):
+- Completar el contenido institucional real todavía marcado `[PENDIENTE: ...]` en `content/*.ts` (fotos de galería, textos históricos, datos de contacto definitivos).
+- La migración de la implementación interna de `lib/microsite-data.ts` para leer del Supabase de producción del portal (con el refactor de `Header.tsx`/`WhatsAppButton.tsx` a async que eso implica, documentado en `doc/EXPORT_PLANTILLA_CENTRO_LALIN.md` §5).
+- Todo lo ya asignado al portal en la Sección 11.1 (migración SQL, RLS, enrutamiento dinámico `/asociaciones/[slug]`).
+
+`centro-virtual` queda a la espera de la confirmación del portal para proceder con la importación.
+

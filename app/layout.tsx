@@ -73,7 +73,7 @@ export default function RootLayout({
       lang="es"
       className={`${fraunces.variable} ${workSans.variable} ${ibmPlex.variable} scroll-smooth`}
     >
-      <body className="min-h-screen bg-paper-2 text-ink antialiased" suppressHydrationWarning>
+      <body className="lalin-theme min-h-screen bg-paper-2 text-ink antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
