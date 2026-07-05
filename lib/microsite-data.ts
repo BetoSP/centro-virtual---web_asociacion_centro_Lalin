@@ -7,6 +7,8 @@ import { newsItems, newsItemsFull, newsPageContent } from '@/content/news';
 import { galleryContent } from '@/content/gallery';
 import { contactPageContent } from '@/content/contactPage';
 import { membershipFormContent } from '@/content/membership';
+import { notFoundContent } from '@/content/notFound';
+import { privacyPolicyContent } from '@/content/privacyPolicy';
 import type {
   SiteConfig,
   NavItem,
@@ -20,6 +22,8 @@ import type {
   ContactPageContent,
   MembershipFormContent,
   BoardContent,
+  NotFoundContent,
+  PrivacyPolicyContent,
 } from '@/types/content';
 
 /**
@@ -90,4 +94,12 @@ export function getMembershipFormContent(): MembershipFormContent {
 
 export function getBoardContent(): BoardContent {
   return homeContent.board;
+}
+
+export function getNotFoundContent(): NotFoundContent {
+  return notFoundContent;
+}
+
+export function getPrivacyPolicyContent(): PrivacyPolicyContent {
+  return privacyPolicyContent;
 }

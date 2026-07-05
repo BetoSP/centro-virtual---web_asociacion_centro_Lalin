@@ -4,15 +4,15 @@ import { sendNotificationEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, message } = await request.json();
+    const { name, email, message, acceptsPrivacyPolicy } = await request.json();
 
-    if (!name || !email || !message) {
+    if (!name || !email || !message || acceptsPrivacyPolicy !== 'on') {
       return NextResponse.json({ error: 'Faltan datos obligatorios' }, { status: 400 });
     }
 
     const { error } = await supabaseAdmin
       .from('mensajes_contacto')
-      .insert({ nombre: name, email, mensaje: message });
+      .insert({ nombre: name, email, mensaje: message, accepts_privacy_policy: true });
 
     if (error) throw error;
 

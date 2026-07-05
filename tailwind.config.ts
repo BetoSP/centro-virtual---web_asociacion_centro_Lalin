@@ -9,22 +9,26 @@ const config: Config = {
     extend: {
       colors: {
         // Paleta del diseño MVP
-        ink: "#1C2321",
+        // ink/granite/granite-light/line/gold/paper/paper-2/paper-warm se resuelven contra
+        // las custom properties de globals.css, que ya definen su valor para
+        // @media (prefers-color-scheme: dark) — así toda clase Tailwind que los use
+        // (bg-paper, text-ink, etc.) responde a modo oscuro sin variante dark: explícita.
+        ink: "var(--ink)",
         atlantic: "#0E2A38",
         "atlantic-2": "#153447",
         green: "#3F6B4A",
         "green-dark": "#2E5138",
-        gold: "#C9A227",
+        gold: "var(--gold)",
         black: "#141414",
-        granite: "#6E6A5E",
-        "granite-light": "#B9B3A4",
-        paper: "#F6F4EE",
-        "paper-2": "#EAE4D4",
-        line: "#DCD6C6",
+        granite: "var(--granite)",
+        "granite-light": "var(--granite-light)",
+        paper: "var(--paper)",
+        "paper-2": "var(--paper-2)",
+        line: "var(--line)",
         terracotta: "#B4502E",
         "terracotta-dark": "#8B4A2E",
         "gold-2": "#D9B23C",
-        "paper-warm": "#FAF7F0",
+        "paper-warm": "var(--paper-warm)",
         "grey-1": "#4A473E",
         "grey-2": "#9C978A",
         "grey-3": "#E4DECD",
@@ -33,6 +37,7 @@ const config: Config = {
         "portal-blue": "#003B73",
         "portal-blue-bright": "#0066CC",
         "portal-gold": "#C8A96B",
+        "azul-galicia": "#007BC4",
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "serif"],

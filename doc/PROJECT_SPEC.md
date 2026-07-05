@@ -219,10 +219,63 @@ Verificado (2026-07-03): build de producción + POST real al endpoint (200 OK, `
 
 Reglas de la interacción: solo un hito puede estar abierto a la vez (fijado por click o mostrado por hover); hacer click en el fondo oscurecido cierra la tarjeta; si la descripción es larga, se trunca con un botón "Leer más" que solo es interactuable/enfocable mientras la tarjeta está abierta.
 
+### 8.2e Fondo exterior al ancho de diseño (hecho 2026-07-05, pedido explícito del usuario)
+
+El sitio tiene un ancho de diseño fijo (`max-w-container` = 1180px, `tailwind.config.ts`). En monitores más anchos, el usuario pidió que la zona fuera de ese ancho se vea de un color uniforme, tenue y distinto del fondo de la página (no el mismo `bg-paper`, que antes se aplicaba también a esa zona sin distinción).
+
+Implementación en `app/layout.tsx`: el `<body>` (ancho completo de la ventana) usa `bg-paper-2` (el tono "arena" ya definido como color secundario en `tailwind.config.ts`/`globals.css`, antes solo usado dentro de secciones puntuales) como fondo exterior; un `<div>` interno con `max-w-container mx-auto` contiene todo el contenido (`children`) y mantiene el `bg-paper` original — visualmente idéntico a como se veía todo el sitio antes de este cambio dentro del ancho de diseño. **Actualización (2026-07-05, ver §8.2f)**: las variantes `dark:bg-[var(--paper-2)]`/`dark:bg-[var(--paper)]` agregadas originalmente en este punto quedaron redundantes y se retiraron una vez que `paper`/`paper-2` pasaron a resolverse directamente contra sus custom properties en `tailwind.config.ts` — `bg-paper`/`bg-paper-2` ya son dark-mode-aware sin variante explícita.
+
+Verificado visualmente con Playwright (build de producción, puerto 3100): 1920×1080 y 1440×900 en home/`/historia`/`/politica-de-privacidad` (franjas exteriores visibles, contenido interior sin cambios), 390×844 mobile (sin franja, como se espera), y 1920×1080 con `colorScheme: 'dark'` en `/politica-de-privacidad` (fondo oscuro correcto, texto legible).
+
+**Nota resuelta (ver §8.2f):** el problema de `WhatsAppButton` flotando sobre la franja exterior en vez de alinearse con el borde del contenido en monitores anchos fue corregido — el usuario confirmó explícitamente que quería este arreglo.
+
+### 8.2f Corrección integral de modo oscuro y alineación del botón de WhatsApp (hecho 2026-07-05, confirmado por el usuario)
+
+Al corregir el fondo exterior (§8.2e) se detectaron dos problemas colaterales, ninguno pedido explícitamente en un principio. Consultado el usuario vía pregunta directa, confirmó **corregir ambos**:
+
+**1. `WhatsAppButton` no se alineaba con el borde de la columna de contenido en monitores anchos.** Corregido en `components/ui/WhatsAppButton.tsx`: el `right` fijo (`right-6`, relativo al viewport) pasó a `right-[max(1.5rem,calc((100vw-1180px)/2+1.5rem))]` — en pantallas más angostas que 1180px+3rem el botón se comporta igual que antes (24px del borde de ventana); en pantallas más anchas, el botón se ancla al borde derecho de la columna de contenido + 24px, en vez de quedar flotando sobre la franja exterior. Verificado visualmente en 1920×1080.
+
+**2. El modo oscuro nunca se activaba realmente en todo el sitio antes de este arreglo.** El fix de fondo exterior (§8.2e) fue la primera vez que el `<body>` respondió de verdad a `@media (prefers-color-scheme: dark)`; eso expuso que casi ningún componente tenía soporte real de modo oscuro — la mayoría de las tarjetas (`bg-white` literal) y textos quedaban ilegibles o con contraste roto. Consultado el usuario sobre el alcance real del problema (no era solo 3 archivos, era prácticamente todo el sitio), confirmó **encarar la corrección completa ahora**, no diferirla ni desactivar el modo oscuro.
+
+**Principio de diseño aplicado, dado explícitamente por el usuario**: *"cuando hay un fondo claro las letras y demás han de ser más oscuras, cuando el fondo es oscuro las letras y demás han de ser claras. Cambia una cosa y cambia la otra"* — fondo y color de texto emparejado deben cambiar siempre juntos, nunca por separado.
+
+**Arquitectura elegida — tokens ruteados por variable CSS en vez de parches por archivo**: en `tailwind.config.ts`, los tokens compartidos que son genuinamente neutrales al modo (`ink`, `gold`, `granite`, `granite-light`, `paper`, `paper-2`, `line`, `paper-warm`) pasaron de valor hex literal a referencia `var(--x)` contra las custom properties ya definidas en `globals.css` (que ya tenían su contraparte oscura bajo `@media (prefers-color-scheme: dark)`, pero sin efecto porque el config las pisaba con literales). Esto hace que **cualquier clase existente que use esos tokens** (`bg-paper`, `text-ink`, etc., en cualquier componente) responda a modo oscuro automáticamente, sin tocar cada archivo uno por uno. `--paper-warm` no tenía custom property propia — se agregó (`#faf7f0` claro / `#13272f` oscuro).
+
+**Excepción documentada — `atlantic` (#0E2A38, navy)**: se dejó como hex literal a propósito, porque se usa con dos roles incompatibles: como color de texto de títulos/links (`text-atlantic`, querría volverse claro en oscuro) y como fondo sólido de estado seleccionado/hover (`bg-atlantic`, debe seguir siendo navy siempre, porque lleva texto blanco encima en ambos modos). Un mismo token no puede tener dos comportamientos de modo distintos según el uso, así que los usos de TEXTO de `text-atlantic` recibieron overrides puntuales `dark:text-[var(--ink)]` archivo por archivo (`app/actividades/[id]/page.tsx`, `app/novedades/[id]/page.tsx`, `HistoryMilestoneCard.tsx`, `BoardTeaser.tsx`, `not-found.tsx`, `News.tsx`, `NewsList.tsx`, `ContactForm.tsx`), dejando `bg-atlantic` intacto.
+
+**Convención de tarjetas extendida**: el patrón `bg-white dark:bg-[#13272F]` (ya preexistente en `MembershipForm.tsx`/`ActivitiesList.tsx`/`PhotoCapture.tsx`) se aplicó a todo `bg-white` restante sin variante oscura: `Activities.tsx`, `ComarcaNews.tsx`, `About.tsx`, `ContactPage.tsx`, `News.tsx`, `NewsList.tsx`, más los inputs de `ContactForm.tsx`/`NewsletterMiniForm.tsx`.
+
+**Regresión propia detectada y corregida**: 7 botones "píldora siempre clara" (`Header.tsx` ×2, `Hero.tsx`, `JoinUs.tsx`, `MembershipForm.tsx` ×2, `NewsletterMiniForm.tsx`) usaban `dark:bg-paper` para forzar un fondo claro fijo en modo oscuro, aprovechando que `paper` antes era un literal fijo. Al rutear `paper` por variable CSS, `dark:bg-paper` empezó a resolver al valor OSCURO de `--paper` — el botón se volvía casi invisible contra el fondo de página, también oscuro. Corregido reemplazando por el literal explícito `dark:bg-[#F6F4EE]` (el hex claro original de `paper`), restaurando el comportamiento de píldora siempre clara independiente del nuevo carácter dinámico del token.
+
+**Verificación**: build de producción + servidor en `:3100` + Playwright, captura full-page en 1440×900 de las 11 rutas del sitio (`/`, `/historia`, `/actividades`, `/actividades/1`, `/novedades`, `/novedades/1`, `/galeria`, `/directiva`, `/contacto`, `/asociate`, `/politica-de-privacidad`) en `colorScheme: 'light'` y `'dark'` — 22 capturas en total, todas revisadas una por una. Modo oscuro: contraste correcto en todas las rutas. Modo claro: sin ningún cambio visible respecto al diseño previo a esta sesión.
+
 ### 8.3 Relacionado con Fase 2 (no implementar aún, solo a tener en cuenta al diseñar el modelo de datos de Fase 1)
 
 - La foto de verificación capturada en el wizard de asociación deberá guardarse en un campo propio en la futura base de datos de socios.
 - El editor de Historia deberá permitir al administrador marcar/estilizar hitos destacados vía CMS.
+
+### 8.3b Política de Privacidad y seguridad de datos personales (hecho 2026-07-05, con pendientes)
+
+A raíz de una consulta del usuario sobre qué recaudo legal se toma al pedir datos personales (incluida foto de verificación) en `/asociate` y `/contacto`, se implementó:
+
+- `content/privacyPolicy.ts` + `app/politica-de-privacidad/page.tsx`: Política de Privacidad completa, redactada como borrador profesional conforme a la Ley 25.326, con placeholders `[PENDIENTE: ...]` en los datos propios de la institución que no están confirmados. Sigue el mismo patrón "content as data" que el resto del sitio (nunca hardcodeado en componentes: los links a la política en `ContactForm`, `MembershipForm`, `NewsletterMiniForm` y `Footer` toman el título desde `getPrivacyPolicyContent()`, no un string fijo). Pendiente de revisión por un asesor legal antes de considerarse definitiva. **Aclaración 2026-07-05**: el texto completo (no solo los 3 placeholders) es contenido propio de cada institución y debe terminar siendo editable desde el futuro panel de administración del Portal, igual que noticias/actividades/hitos — ver `doc/PLAN_INTEGRACION_SUPABASE.md` Fase 1.b para el detalle y el gap de esquema (falta tabla tipo `asociaciones_legales` del lado del Portal).
+- Checkbox de consentimiento obligatorio (con link a la política) en `ContactForm` y `MembershipForm`; aviso de texto (sin checkbox, por tratarse solo de un email en un formulario compacto de newsletter) en `NewsletterMiniForm`.
+- Link a la política en la barra inferior del Footer.
+- Migración `supabase/migrations/20260705000000_consentimiento_privacidad.sql` (columna `accepts_privacy_policy` en `mensajes_contacto` y `solicitudes_socio`) — **aplicada contra la base real (2026-07-05)** mediante conexión Postgres directa (ver `doc/PLAN_INTEGRACION_SUPABASE.md` Fase 1.b para el detalle de por qué el `supabase` CLI no pudo usarse y cómo se aplicó igual).
+
+**Estado de seguridad relevado en esta misma revisión** (bueno, ya construido, y re-verificado por SQL directo el 2026-07-05):
+- La `service_role` key de Supabase solo se usa server-side (`lib/supabase.ts`), nunca llega al navegador.
+- La foto de verificación se guarda en un bucket privado de Storage (no público, confirmado por `select public from storage.buckets`), solo se persiste el path.
+- Los 3 API routes no exponen ningún dato sensible en las respuestas de error.
+- Las 9 tablas de `public` tienen RLS habilitada y **cero policies públicas** (`pg_policies` vacío) — confirmado por SQL directo, no solo por `supabase-js`, que podría dar falso positivo si RLS bloqueara la lectura sin avisar.
+- Verificación end-to-end real (2026-07-05): POST de prueba a `/api/contact` contra el servidor corriendo en `:3000` con `acceptsPrivacyPolicy: 'on'` devolvió `200 OK`; se confirmó la fila en `mensajes_contacto` con `accepts_privacy_policy: true` vía SQL directo, y se borró el dato de prueba inmediatamente después.
+
+**Gaps de seguridad y compliance pendientes (no implementados en esta sesión, quedan documentados para una próxima)**:
+- Sin rate limiting ni protección anti-bot en `/api/contact`, `/api/newsletter/subscribe` y `/api/membership` — expuestos a spam/abuso masivo de envíos.
+- Sin mecanismo funcional para que una persona ejerza sus derechos ARCO (acceso/rectificación/supresión) más allá de escribir por email — aceptable como punto de partida, pero no hay proceso ni panel para tramitarlo (depende del panel de administración, todavía no construido, ver §8.2b).
+- Retención/borrado de datos vencidos no está automatizado: hoy no hay ningún proceso que borre solicitudes rechazadas o mensajes de contacto antiguos según el plazo que finalmente se defina en la política.
+- Ley 25.326 exige que las bases de datos que registren datos personales estén inscriptas en el Registro Nacional de Bases de Datos (RNBD) de la Agencia de Acceso a la Información Pública — trámite institucional, no de código; no hecho ni verificado si aplica al volumen/tipo de datos de este Centro. Queda como pregunta para el asesor legal, junto con la revisión del texto.
+- El texto actual no incluye un procedimiento de notificación de brechas de seguridad (qué hacer, a quién avisar y en qué plazo si los datos se filtran) — común en políticas de referencia pero no confirmado como exigencia legal puntual para esta institución; también a validar con el asesor legal.
 
 ### 8.4 Integración con Portal Galicia Migrante (decidida, no implementada)
 

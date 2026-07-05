@@ -154,6 +154,7 @@ export interface JoinUsContent {
   submitLoadingLabel: string;
   successMessage: string;
   errorMessage: string;
+  privacyNotice: string;
 }
 
 export interface ContactContent {
@@ -177,6 +178,7 @@ export interface ContactPageContent extends ContactContent {
     submitLoadingLabel: string;
     successMessage: string;
     errorMessage: string;
+    privacyConsentLabel: string;
   };
 }
 
@@ -252,6 +254,7 @@ export interface MembershipFormContent {
   maritalStatusOptions: string[];
   galicianOriginOptions: string[];
   declaration: string;
+  privacyConsentLabel: string;
   submitLabel: string;
   submitLoadingLabel: string;
   successMessage: string;
@@ -279,6 +282,26 @@ export interface BoardTeaserContent {
   photo: string;
   linkLabel: string;
   linkHref: string;
+}
+
+export interface NotFoundContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  backHomeLabel: string;
+}
+
+export interface PrivacyPolicySection {
+  heading: string;
+  paragraphs: string[];
+}
+
+export interface PrivacyPolicyContent {
+  eyebrow: string;
+  title: string;
+  lastUpdated: string;
+  intro: string;
+  sections: PrivacyPolicySection[];
 }
 
 export interface HomeContent {

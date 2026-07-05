@@ -20,5 +20,6 @@ export const contactPageContent: ContactPageContent = {
     submitLoadingLabel: 'Enviando...',
     successMessage: '¡Gracias! Recibimos tu mensaje y te responderemos a la brevedad.',
     errorMessage: 'Hubo un error al enviar tu mensaje. Intentá nuevamente.',
+    privacyConsentLabel: 'Leí y acepto la Política de Privacidad para el tratamiento de mis datos.',
   },
 };

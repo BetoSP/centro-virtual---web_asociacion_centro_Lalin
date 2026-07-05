@@ -48,7 +48,7 @@ export default async function ActividadDetallePage({
               {activity.label}
               {activity.dateLabel ? ` · ${activity.dateLabel}` : ''}
             </p>
-            <h1 className="font-display text-2xl md:text-3xl text-atlantic mb-4">{activity.title}</h1>
+            <h1 className="font-display text-2xl md:text-3xl text-atlantic dark:text-[var(--ink)] mb-4">{activity.title}</h1>
             <p className="text-[14px] leading-[1.75] text-granite max-w-[600px] mb-6">
               {activity.description}
             </p>

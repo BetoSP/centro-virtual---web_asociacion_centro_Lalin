@@ -1,8 +1,10 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Link from 'next/link';
 import PhotoCapture from './PhotoCapture';
 import type { MembershipFormContent } from '@/types/content';
+import { getPrivacyPolicyContent } from '@/lib/microsite-data';
 
 const inputClass =
   'w-full rounded-btn border border-line bg-white dark:bg-[#13272F] px-4 py-3 text-sm text-ink placeholder-granite outline-none transition-colors focus:border-gold';
@@ -17,6 +19,8 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
   const [step, setStep] = useState(0);
   const [spanishRegistration, setSpanishRegistration] = useState<'Sí' | 'No' | ''>('');
   const [acceptsStatutes, setAcceptsStatutes] = useState(false);
+  const [acceptsPrivacyPolicy, setAcceptsPrivacyPolicy] = useState(false);
+  const privacyPolicyTitle = getPrivacyPolicyContent().title;
   const formRef = useRef<HTMLFormElement>(null);
   const stepRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -73,6 +77,7 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
         form.reset();
         setSpanishRegistration('');
         setAcceptsStatutes(false);
+        setAcceptsPrivacyPolicy(false);
         setStep(0);
       } else {
         setStatus('error');
@@ -298,6 +303,38 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
               </span>
               {content.declaration}
             </label>
+
+            <label className="flex items-start gap-3 text-sm text-granite leading-6 cursor-pointer mt-4">
+              <input
+                type="checkbox"
+                name="acceptsPrivacyPolicy"
+                required
+                checked={acceptsPrivacyPolicy}
+                onChange={(e) => setAcceptsPrivacyPolicy(e.target.checked)}
+                className="sr-only"
+              />
+              <span
+                className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-[4px] border flex items-center justify-center transition-colors"
+                style={{
+                  backgroundColor: acceptsPrivacyPolicy ? '#3F6B4A' : '#fff',
+                  borderColor: acceptsPrivacyPolicy ? '#3F6B4A' : '#DCD6C6',
+                }}
+                aria-hidden="true"
+              >
+                {acceptsPrivacyPolicy && (
+                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none">
+                    <path d="M3 8.5L6.5 12L13 4.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
+              </span>
+              <span>
+                {content.privacyConsentLabel.split(privacyPolicyTitle)[0]}
+                <Link href="/politica-de-privacidad" className="underline hover:text-atlantic dark:hover:text-[var(--ink)]">
+                  {privacyPolicyTitle}
+                </Link>
+                {content.privacyConsentLabel.split(privacyPolicyTitle)[1]}
+              </span>
+            </label>
           </div>
       </div>
 
@@ -316,7 +353,7 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
           <button
             type="button"
             onClick={goNext}
-            className="rounded-full bg-gold-2 text-ink px-8 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors dark:bg-paper dark:text-gold-2"
+            className="rounded-full bg-gold-2 text-ink px-8 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors dark:bg-[#F6F4EE] dark:text-gold-2"
           >
             Continuar →
           </button>
@@ -342,7 +379,7 @@ export default function MembershipForm({ content }: { content: MembershipFormCon
               href={whatsappConfirmUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-full bg-gold-2 text-ink px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors dark:bg-paper dark:text-gold-2"
+              className="inline-block rounded-full bg-gold-2 text-ink px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors dark:bg-[#F6F4EE] dark:text-gold-2"
             >
               {content.confirmWhatsappLabel}
             </a>

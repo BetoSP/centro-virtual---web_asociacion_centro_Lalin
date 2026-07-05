@@ -17,11 +17,11 @@ export default function News({ content }: { content: NewsContent }) {
         <div className="grid gap-x-8 gap-y-10 md:grid-cols-3">
           {content.items.map((news) => (
             <Link key={news.id} href={news.href} className="group">
-              <article className="h-full rounded-xl border border-line bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+              <article className="h-full rounded-xl border border-line bg-white dark:bg-[#13272F] p-6 shadow-sm hover:shadow-md transition-shadow">
                 <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold mb-3">
                   {news.date}
                 </p>
-                <h3 className="font-display text-xl mb-3 text-gold group-hover:text-atlantic transition-colors">
+                <h3 className="font-display text-xl mb-3 text-gold group-hover:text-atlantic dark:group-hover:text-[var(--ink)] transition-colors">
                   {news.title}
                 </h3>
                 <p className="text-sm text-granite leading-6">{news.excerpt}</p>

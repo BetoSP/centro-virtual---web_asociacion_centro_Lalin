@@ -73,7 +73,7 @@ export default function RootLayout({
       lang="es"
       className={`${fraunces.variable} ${workSans.variable} ${ibmPlex.variable} scroll-smooth`}
     >
-      <body className="min-h-screen flex flex-col bg-paper text-ink antialiased" suppressHydrationWarning>
+      <body className="min-h-screen bg-paper-2 text-ink antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -81,7 +81,9 @@ export default function RootLayout({
             __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
           }}
         />
-        {children}
+        <div className="max-w-container mx-auto min-h-screen flex flex-col bg-paper">
+          {children}
+        </div>
         <WhatsAppButton />
       </body>
     </html>

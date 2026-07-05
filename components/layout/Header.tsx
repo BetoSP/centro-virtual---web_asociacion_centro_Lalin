@@ -34,7 +34,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-[12.5px] font-bold rounded-full px-4 py-[7px] bg-gold-2 text-ink dark:bg-paper dark:text-gold-2"
+                    className="text-[12.5px] font-bold rounded-full px-4 py-[7px] bg-gold-2 text-ink dark:bg-[#F6F4EE] dark:text-gold-2"
                   >
                     {item.label}
                   </Link>
@@ -71,7 +71,7 @@ export default function Header() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="inline-block text-sm font-bold rounded-full px-4 py-[7px] bg-gold-2 text-ink dark:bg-paper dark:text-gold-2"
+                        className="inline-block text-sm font-bold rounded-full px-4 py-[7px] bg-gold-2 text-ink dark:bg-[#F6F4EE] dark:text-gold-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.label}

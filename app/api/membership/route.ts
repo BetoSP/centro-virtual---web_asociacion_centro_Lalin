@@ -13,7 +13,14 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
 
-    if (!data.firstName || !data.lastName || !data.documentNumber || !data.email || !data.photo) {
+    if (
+      !data.firstName ||
+      !data.lastName ||
+      !data.documentNumber ||
+      !data.email ||
+      !data.photo ||
+      data.acceptsPrivacyPolicy !== 'on'
+    ) {
       return NextResponse.json(
         { error: 'Faltan datos obligatorios' },
         { status: 400 }
@@ -66,6 +73,7 @@ export async function POST(request: NextRequest) {
       referrer_member_number: data.referrerMemberNumber || null,
       photo_url: photoPath,
       accepts_statutes: data.acceptsStatutes === 'on',
+      accepts_privacy_policy: true,
     }).select('id, confirmation_token').single();
 
     if (insertError) {

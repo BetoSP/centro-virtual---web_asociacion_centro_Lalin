@@ -99,6 +99,7 @@ export const homeContent: HomeContent = {
     submitLoadingLabel: 'Enviando...',
     successMessage: '¡Gracias! Te escribiremos pronto.',
     errorMessage: 'Hubo un error. Intentá nuevamente.',
+    privacyNotice: 'Al suscribirte, aceptás nuestra Política de Privacidad.',
   },
   boardTeaser: {
     eyebrow: 'Autoridades',

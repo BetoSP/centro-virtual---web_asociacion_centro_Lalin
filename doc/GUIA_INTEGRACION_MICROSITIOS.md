@@ -335,6 +335,8 @@ Para responder a las observaciones del propietario y asegurar la robustez arquit
 *   La plantilla de `centro-virtual` consumirá los datos obligatoriamente a través de un adaptador de datos (Hook/Servicio, ej. `useMicrositioData()`).
 *   Esto aislará los componentes visuales del origen de datos, facilitando el cambio de JSON locales (mock) a Supabase en el Hito (a), y la futura migración de Auth en el Hito (b).
 
+**Nota de implementación (`centro-virtual`, 2026-07-02)**: el adaptador quedó construido en `lib/microsite-data.ts` como un set de **funciones planas** (`getSiteConfig()`, `getHomeContent()`, `getActivityById(id)`, etc.), no como un hook de React `useMicrositioData()`. Motivo: todas las páginas de `centro-virtual` son Server Components de Next.js App Router, donde un hook de React no aplica. El objetivo del patrón (aislar componentes visuales del origen de datos) se cumple igual. Detalle completo en `doc/PLAN_INTEGRACION_SUPABASE.md` Fase 0.c.
+
 ### 10.2 Control de Auditoría para Medios Compartidos
 *   La tabla `asociaciones_galeria` incluye las columnas:
     *   `visibilidad` (`VARCHAR(50) DEFAULT 'privado'`) para respetar la gobernanza del propietario.

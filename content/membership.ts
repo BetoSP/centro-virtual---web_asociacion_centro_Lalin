@@ -58,6 +58,8 @@ export const membershipFormContent: MembershipFormContent = {
   galicianOriginOptions: ['Nativo', 'Hijo', 'Nieto', 'No aplica'],
   declaration:
     'Declaro y acepto los Estatutos vigentes y los reglamentos de la Institución.',
+  privacyConsentLabel:
+    'Leí y acepto la Política de Privacidad para el tratamiento de mis datos personales, incluida la fotografía de verificación.',
   submitLabel: 'Enviar solicitud',
   submitLoadingLabel: 'Enviando...',
   successMessage:

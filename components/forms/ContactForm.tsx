@@ -1,14 +1,18 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import type { ContactPageContent } from '@/types/content';
+import { getPrivacyPolicyContent } from '@/lib/microsite-data';
 
 const inputClass =
-  'w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink placeholder-granite outline-none transition-colors focus:border-gold';
+  'w-full rounded-md border border-line bg-white dark:bg-[#13272F] px-4 py-3 text-sm text-ink placeholder-granite outline-none transition-colors focus:border-gold';
 const labelClass = 'block text-sm font-medium text-ink mb-2';
 
 export default function ContactForm({ content }: { content: ContactPageContent }) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [acceptsPrivacyPolicy, setAcceptsPrivacyPolicy] = useState(false);
+  const privacyPolicyTitle = getPrivacyPolicyContent().title;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +30,7 @@ export default function ContactForm({ content }: { content: ContactPageContent }
       if (response.ok) {
         setStatus('success');
         form.reset();
+        setAcceptsPrivacyPolicy(false);
       } else {
         setStatus('error');
       }
@@ -47,6 +52,25 @@ export default function ContactForm({ content }: { content: ContactPageContent }
       <div>
         <label className={labelClass} htmlFor="message">{content.form.messageLabel}</label>
         <textarea className={inputClass} id="message" name="message" rows={5} required />
+      </div>
+      <div>
+        <label className="flex items-start gap-3 text-sm text-granite leading-6 cursor-pointer">
+          <input
+            type="checkbox"
+            name="acceptsPrivacyPolicy"
+            required
+            checked={acceptsPrivacyPolicy}
+            onChange={(e) => setAcceptsPrivacyPolicy(e.target.checked)}
+            className="mt-0.5 h-4 w-4 shrink-0 rounded-[4px] border-line accent-atlantic"
+          />
+          <span>
+            {content.form.privacyConsentLabel.split(privacyPolicyTitle)[0]}
+            <Link href="/politica-de-privacidad" className="underline hover:text-atlantic dark:hover:text-[var(--ink)]">
+              {privacyPolicyTitle}
+            </Link>
+            {content.form.privacyConsentLabel.split(privacyPolicyTitle)[1]}
+          </span>
+        </label>
       </div>
       <div>
         <button

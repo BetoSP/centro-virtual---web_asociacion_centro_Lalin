@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getFooterNav, getSiteConfig, getHomeContent } from '@/lib/microsite-data';
+import { getFooterNav, getSiteConfig, getHomeContent, getPrivacyPolicyContent } from '@/lib/microsite-data';
 import SocialIcons from '@/components/ui/SocialIcons';
 import NewsletterMiniForm from '@/components/forms/NewsletterMiniForm';
 import { whatsappHref } from '@/lib/whatsapp';
@@ -10,6 +10,7 @@ export default function Footer() {
   const { footerNavSections, footerContactTitle } = getFooterNav();
   const siteConfig = getSiteConfig();
   const homeContent = getHomeContent();
+  const privacyPolicyTitle = getPrivacyPolicyContent().title;
   const whatsappLink = whatsappHref(siteConfig.whatsapp);
 
   return (
@@ -81,10 +82,15 @@ export default function Footer() {
             />
             {siteConfig.portalStrip.footerText}
           </span>
-          <span className="flex items-center gap-1.5 text-white/60">
-            <span>by</span>
-            <span className="font-display font-semibold text-xs text-white/85 tracking-[0.02em]">
-              PLM Systems
+          <span className="flex items-center gap-4">
+            <Link href="/politica-de-privacidad" className="text-white/60 hover:text-gold transition-colors">
+              {privacyPolicyTitle}
+            </Link>
+            <span className="flex items-center gap-1.5 text-white/60">
+              <span>by</span>
+              <span className="font-display font-semibold text-xs text-white/85 tracking-[0.02em]">
+                PLM Systems
+              </span>
             </span>
           </span>
         </div>

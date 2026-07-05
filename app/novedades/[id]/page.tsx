@@ -39,7 +39,7 @@ export default async function NovedadDetallePage({
             <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-[#B9B3A4] mb-2">
               {news.date}
             </p>
-            <h1 className="font-display text-2xl md:text-3xl text-atlantic mb-4">{news.title}</h1>
+            <h1 className="font-display text-2xl md:text-3xl text-atlantic dark:text-[var(--ink)] mb-4">{news.title}</h1>
             <p className="text-[14px] leading-[1.75] text-granite max-w-[600px]">{news.excerpt}</p>
           </div>
         </div>

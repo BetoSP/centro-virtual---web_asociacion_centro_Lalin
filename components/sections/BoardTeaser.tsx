@@ -28,7 +28,7 @@ export default function BoardTeaser({ content }: { content: BoardTeaserContent }
             <p className="text-granite leading-8">{content.text}</p>
             <Link
               href={content.linkHref}
-              className="inline-block mt-4 text-[13.5px] font-bold text-atlantic hover:text-terracotta transition-colors"
+              className="inline-block mt-4 text-[13.5px] font-bold text-atlantic dark:text-[var(--ink)] hover:text-terracotta transition-colors"
             >
               {content.linkLabel}
             </Link>

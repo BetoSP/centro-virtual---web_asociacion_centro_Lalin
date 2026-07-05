@@ -58,13 +58,13 @@ export default function HistoryMilestoneCard({
             <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-gold mb-2">
               {lastMilestone.year}
             </p>
-            <h3 className="font-display text-2xl mb-4 text-atlantic">{lastMilestone.title}</h3>
+            <h3 className="font-display text-2xl mb-4 text-atlantic dark:text-[var(--ink)]">{lastMilestone.title}</h3>
             <p className="text-granite leading-7">{displayedDescription}</p>
             {isOpen && isLongDescription && !expanded && (
               <button
                 type="button"
                 onClick={() => setExpanded(true)}
-                className="mt-3 text-sm font-bold text-atlantic hover:text-terracotta transition-colors cursor-pointer"
+                className="mt-3 text-sm font-bold text-atlantic dark:text-[var(--ink)] hover:text-terracotta transition-colors cursor-pointer"
               >
                 Leer más →
               </button>

@@ -25,7 +25,7 @@ export default function Activities({ content }: { content: ActivitiesContent }) 
         <div className="grid gap-x-8 gap-y-12 md:grid-cols-3">
           {content.items.map((activity) => (
             <Link key={activity.id} href={activity.href} className="group">
-              <article className="flex h-full flex-col rounded-xl border border-line bg-white shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+              <article className="flex h-full flex-col rounded-xl border border-line bg-white dark:bg-[#13272F] shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                 <div className="relative h-56 bg-paper-2 overflow-hidden">
                   <Image
                     src={activity.image}

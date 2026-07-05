@@ -18,7 +18,7 @@ export default function ContactPage({ content }: { content: ContactPageContent }
         </div>
 
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr] items-start">
-          <div className="rounded-xl border border-line bg-white p-8 shadow-sm">
+          <div className="rounded-xl border border-line bg-white dark:bg-[#13272F] p-8 shadow-sm">
             <h2 className="font-display text-2xl mb-4">{content.sideTitle}</h2>
             <p className="text-sm text-granite leading-6 mb-6">{content.sideDescription}</p>
             <ContactForm content={content} />

@@ -21,7 +21,7 @@ export default function JoinUs({ content }: { content: JoinUsContent }) {
 
           <Link
             href="/asociate"
-            className="inline-block rounded-full bg-gold-2 text-ink px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors whitespace-nowrap dark:bg-paper dark:text-gold-2"
+            className="inline-block rounded-full bg-gold-2 text-ink px-6 py-3 text-sm font-bold shadow-sm hover:bg-gold transition-colors whitespace-nowrap dark:bg-[#F6F4EE] dark:text-gold-2"
           >
             Asociate al Centro
           </Link>

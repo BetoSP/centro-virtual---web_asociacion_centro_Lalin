@@ -13,6 +13,7 @@
   --granite-light: #b9b3a4;
   --paper: #f6f4ee;
   --paper-2: #eae4d4;
+  --paper-warm: #faf7f0;
   --line: #dcd6c6;
   --white: #ffffff;
 }
@@ -21,6 +22,7 @@
   :root {
     --paper: #0b1a20;
     --paper-2: #13272f;
+    --paper-warm: #13272f;
     --ink: #f3efe3;
     --granite: #c7c4b8;
     --granite-light: #9ca39d;

@@ -18,7 +18,7 @@ export default function NewsList({ content }: { content: NewsPageContent }) {
         <div className="grid gap-x-8 gap-y-10 md:grid-cols-3">
           {content.items.map((news) => (
             <Link key={news.id} href={news.href} className="group">
-              <article className="h-full rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+              <article className="h-full rounded-xl overflow-hidden bg-white dark:bg-[#13272F] shadow-sm hover:shadow-md transition-shadow">
                 {news.img && (
                   <div className="relative h-[130px]">
                     <Image src={news.img} alt="" fill className="object-cover saturate-[.9]" />
@@ -28,7 +28,7 @@ export default function NewsList({ content }: { content: NewsPageContent }) {
                   <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#B9B3A4] mb-1.5">
                     {news.date}
                   </p>
-                  <h2 className="font-display text-[15px] font-semibold text-atlantic mb-1.5 leading-tight group-hover:text-gold transition-colors">
+                  <h2 className="font-display text-[15px] font-semibold text-atlantic dark:text-[var(--ink)] mb-1.5 leading-tight group-hover:text-gold transition-colors">
                     {news.title}
                   </h2>
                   <p className="text-[12.5px] text-granite leading-[1.55]">{news.excerpt}</p>

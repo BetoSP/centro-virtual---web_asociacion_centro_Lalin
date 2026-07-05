@@ -31,7 +31,7 @@ export default function About({ content }: { content: AboutContent }) {
           {content.features.map((item) => (
             <div
               key={item.title}
-              className="bg-white rounded-xl border border-line p-6 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white dark:bg-[#13272F] rounded-xl border border-line p-6 shadow-sm hover:shadow-md transition-shadow"
             >
               <h3 className="font-display text-lg text-gold mb-2">{item.title}</h3>
               <p className="text-sm text-granite leading-6">{item.description}</p>
